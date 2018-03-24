@@ -1,4 +1,4 @@
-package com.revature.ProjectXI.controller.beans;
+package com.revature.projecttwo.controller.beans;
 
 public class Comment {
 

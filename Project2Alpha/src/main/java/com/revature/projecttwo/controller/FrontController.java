@@ -1,4 +1,4 @@
-package com.revature.ProjectXI.controller;
+package com.revature.projecttwo.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.revature.ProjectXI.controller.beans.Comment;
-import com.revature.ProjectXI.controller.beans.Notification;
-import com.revature.ProjectXI.controller.beans.Post;
-import com.revature.ProjectXI.controller.beans.User;
+import com.revature.projecttwo.controller.beans.Comment;
+import com.revature.projecttwo.controller.beans.Notification;
+import com.revature.projecttwo.controller.beans.Post;
+import com.revature.projecttwo.controller.beans.User;
 
 @RestController
 public class FrontController {
