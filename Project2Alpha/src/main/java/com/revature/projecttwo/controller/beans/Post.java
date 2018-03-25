@@ -1,16 +1,22 @@
 package com.revature.projecttwo.controller.beans;
 
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
  * 
  * It's a POST Bean!
  *
  */
+@Entity
 public class Post {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	private List<Integer> likes;
+	private Integer[] likes;
 	private String content;
 	private String youtubeUrl;
 	private String imageUrl;
@@ -20,7 +26,7 @@ public class Post {
 
 	}
 
-	public Post(int id, List<Integer> likes, String content, String youtubeUrl, String imageUrl, int authorId) {
+	public Post(int id, Integer[] likes, String content, String youtubeUrl, String imageUrl, int authorId) {
 		super();
 		this.id = id;
 		this.likes = likes;
@@ -38,11 +44,11 @@ public class Post {
 		this.id = id;
 	}
 
-	public List<Integer> getLikes() {
+	public Integer[] getLikes() {
 		return likes;
 	}
 
-	public void setLikes(List<Integer> likes) {
+	public void setLikes(Integer[] likes) {
 		this.likes = likes;
 	}
 
@@ -76,12 +82,6 @@ public class Post {
 
 	public void setAuthorId(int authorId) {
 		this.authorId = authorId;
-	}
-
-	@Override
-	public String toString() {
-		return "Post [id=" + id + ", likes=" + likes + ", content=" + content + ", YoutubeUrl=" + youtubeUrl
-				+ ", imageUrl=" + imageUrl + ", authorId=" + authorId + "]";
 	}
 
 }

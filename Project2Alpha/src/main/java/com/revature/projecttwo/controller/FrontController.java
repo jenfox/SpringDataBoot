@@ -1,9 +1,8 @@
 package com.revature.projecttwo.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.http.MediaType;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,28 +13,47 @@ import org.springframework.web.bind.annotation.RestController;
 import com.revature.projecttwo.controller.beans.Comment;
 import com.revature.projecttwo.controller.beans.Notification;
 import com.revature.projecttwo.controller.beans.Post;
-import com.revature.projecttwo.controller.beans.User;
+import com.revature.projecttwo.controller.beans.Users;
+import com.revature.projecttwo.controller.service.CommentService;
+import com.revature.projecttwo.controller.service.NotificationService;
+import com.revature.projecttwo.controller.service.PostService;
+import com.revature.projecttwo.controller.service.UserService;
 
 @RestController
 public class FrontController {
 
+	@Autowired
+	private UserService userService;
+	@Autowired
+	private PostService postService;
+	@Autowired
+	private CommentService commentService;
+	@Autowired
+	private NotificationService notificationService;
+
 	@RequestMapping(method = RequestMethod.POST, value = "/register")
-	public ResponseEntity<Boolean> register(@RequestBody User user) {
+	public ResponseEntity<Boolean> register(@RequestBody Users user) {
 		System.out.println("Registering User:\n\t " + user);
 
 		// TODO validation - i.e. all required user fields present
 
-		// TODO DAO
+		userService.addUser(user);
+
 		return ResponseEntity.ok(true);
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/login")
-	public ResponseEntity<Boolean> login(@RequestBody User user) {
+	public ResponseEntity<Boolean> login(@RequestBody Users user) {
 		System.out.println("Logging in User:\n\t " + user);
 
 		// TODO Check
 
-		// TODO authentication
+		Users userFound = userService.getUser(user.getEmail(), user.getPassword());
+		if (userFound == null) {
+			System.out.println("No user Found with email password combination");
+			return ResponseEntity.ok(false);
+
+		}
 		return ResponseEntity.ok(true);
 	}
 
@@ -43,45 +61,40 @@ public class FrontController {
 	public ResponseEntity<Boolean> resetPassword(@RequestBody String email) {
 		System.out.println("Reset Password:\n\t " + email);
 
+		// validate email
+		Users user = userService.getUser(email);
+		// no email exists -> return false
+		if (user == null)
+			return ResponseEntity.ok(false);
+
 		return ResponseEntity.ok(true);
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "/users/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<User> getProfile(@PathVariable int id) {
+	@RequestMapping(method = RequestMethod.GET, value = "/users/{id}")
+	public ResponseEntity<Users> getProfile(@PathVariable Integer id) {
 		System.out.println("Getting user profile:\n\t " + id);
 
-		// dummy data
-		User user = new User();
-		user.setFirstName("Bobbi");
-		user.setLastName("Tables");
-		user.setId(id);
+		Users user = userService.getUser(id);
 
 		return ResponseEntity.ok(user);
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/users/{firstName}/{lastName}")
-	public ResponseEntity<User> getUser(@PathVariable String firstName, @PathVariable String lastName) {
+	public ResponseEntity<List<Users>> getUser(@PathVariable String firstName, @PathVariable String lastName) {
 
 		System.out.println("Getting user:\n\t " + firstName + " " + lastName);
 
-		// TODO fetch
+		List<Users> users = userService.getUsers(firstName, lastName);
 
-		// dummy data
-		User user = new User();
-		user.setFirstName(firstName);
-		user.setLastName(lastName);
-		user.setId(111);
-
-		return ResponseEntity.ok(user);
+		return ResponseEntity.ok(users);
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/users")
-	public ResponseEntity<Boolean> updateProfile(@RequestBody User user) {
+	public ResponseEntity<Boolean> updateProfile(@RequestBody Users user) {
 		System.out.println("Updating User:\n\t " + user);
 
 		// TODO Validation
-
-		// TODO DAO
+		userService.addUser(user);
 
 		return ResponseEntity.ok(true);
 	}
@@ -101,7 +114,7 @@ public class FrontController {
 
 		// TODO validate
 
-		// TODO DAO
+		postService.addPost(post);
 
 		return ResponseEntity.ok(true);
 	}
@@ -110,19 +123,18 @@ public class FrontController {
 	public ResponseEntity<List<Post>> getFeed() {
 		System.out.println("Getting Feed:\n\t ");
 
-		// TODO DAO
-		ArrayList<Post> posts = new ArrayList<Post>();
-		posts.add(new Post(1, null, "Content1", null, null, 10));
-		posts.add(new Post(2, null, "Content2", null, null, 20));
+		List<Post> posts = postService.getAllPosts();
 
 		return ResponseEntity.ok(posts);
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/likes/{postId}")
-	public ResponseEntity<Boolean> likePost(@PathVariable String postId) {
+	public ResponseEntity<Boolean> likePost(@PathVariable Integer postId) {
 		System.out.println("Like Post:\n\t " + postId);
 
-		// TODO DAO
+		// TODO get uid
+		int userId = 0;
+		postService.likePost(postId, userId);
 
 		return ResponseEntity.ok(true);
 	}
@@ -131,7 +143,7 @@ public class FrontController {
 	public ResponseEntity<Boolean> comment(@RequestBody Comment comment) {
 		System.out.println("Commenting:\n\t " + comment);
 
-		// TODO DAO
+		commentService.addComment(comment);
 
 		return ResponseEntity.ok(true);
 	}
@@ -140,10 +152,7 @@ public class FrontController {
 	public ResponseEntity<List<Comment>> getComments() {
 		System.out.println("Getting comments:\n\t ");
 
-		// TODO DAO
-		ArrayList<Comment> comments = new ArrayList<>();
-		comments.add(new Comment(1, 10, 1, 1, "Content1"));
-		comments.add(new Comment(2, 20, 2, 2, "Content2"));
+		List<Comment> comments = commentService.getAllComments();
 
 		return ResponseEntity.ok(comments);
 	}
@@ -151,10 +160,8 @@ public class FrontController {
 	@RequestMapping(method = RequestMethod.GET, value = "/notifications")
 	public ResponseEntity<List<Notification>> getNotifications() {
 		System.out.println("Getting Notifications:\n\t ");
-		// TODO DAO
-		ArrayList<Notification> notifications = new ArrayList<>();
-		notifications.add(new Notification(1, 10, "Content1", null));
-		notifications.add(new Notification(2, 20, "Content2", null));
+
+		List<Notification> notifications = notificationService.getAllNotification();
 
 		return ResponseEntity.ok(notifications);
 	}
@@ -163,7 +170,7 @@ public class FrontController {
 	public ResponseEntity<Boolean> addNotification(@RequestBody Notification notification) {
 		System.out.println("Adding notification:\n\t " + notification);
 
-		// TODO DAO
+		notificationService.addNotification(notification);
 
 		return ResponseEntity.ok(true);
 	}
