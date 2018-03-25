@@ -16,8 +16,10 @@ import com.revature.projecttwo.controller.beans.Post;
 import com.revature.projecttwo.controller.beans.Users;
 import com.revature.projecttwo.controller.service.CommentService;
 import com.revature.projecttwo.controller.service.NotificationService;
+import com.revature.projecttwo.controller.service.PasswordService;
 import com.revature.projecttwo.controller.service.PostService;
 import com.revature.projecttwo.controller.service.UserService;
+import com.revature.projecttwo.email.EmailServiceImpl;
 
 @RestController
 public class FrontController {
@@ -30,6 +32,10 @@ public class FrontController {
 	private CommentService commentService;
 	@Autowired
 	private NotificationService notificationService;
+	@Autowired
+	private EmailServiceImpl emailService;
+	@Autowired
+	private PasswordService passwordService;
 
 	@RequestMapping(method = RequestMethod.POST, value = "/register")
 	public ResponseEntity<Boolean> register(@RequestBody Users user) {
@@ -38,6 +44,9 @@ public class FrontController {
 		// TODO validation - i.e. all required user fields present
 
 		userService.addUser(user);
+
+		// Email
+		emailService.sendSimpleMessage(user.getEmail(), "Register", "Hi, welcome to our social site test");
 
 		return ResponseEntity.ok(true);
 	}
@@ -64,8 +73,15 @@ public class FrontController {
 		// validate email
 		Users user = userService.getUser(email);
 		// no email exists -> return false
-		if (user == null)
+		if (user == null) {
+			System.out.println("No matching Email");
 			return ResponseEntity.ok(false);
+		} else {
+			// generate password
+			String password = passwordService.generatePassword();
+			// send email to reset
+			emailService.sendSimpleMessage(email, "Password Reset", "Hi, your new password is " + password);
+		}
 
 		return ResponseEntity.ok(true);
 	}
