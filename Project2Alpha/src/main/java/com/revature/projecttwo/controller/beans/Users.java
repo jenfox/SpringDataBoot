@@ -1,35 +1,51 @@
-package com.revature.ProjectXI.controller.beans;
+package com.revature.projecttwo.controller.beans;
 
 import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
  * 
  * User Bean ~ User Table
+ * 
+ * RENAMED to user, the SQL table "user" table is a reserved table
  *
  */
-public class User {
+@Entity
+public class Users {
 
-	private int id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
+	@Column(unique = true)
 	private String email;
 	private String firstName;
 	private String lastName;
+	private String password;
 	private int genderId;
 	private int sexualOrientId;
+	@Column(unique = true)
 	private String phoneNumber;
 	private Date dob;
+	@Column(unique = true)
 	private String profileUrl;
 
-	public User() {
+	public Users() {
 
 	}
 
-	public User(int id, String email, String firstName, String lastName, int genderId, int sexualOrientId,
-			String phoneNumber, Date dob, String profileUrl) {
+	public Users(Integer id, String email, String firstName, String lastName, String password, int genderId,
+			int sexualOrientId, String phoneNumber, Date dob, String profileUrl) {
 		super();
 		this.id = id;
 		this.email = email;
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.password = password;
 		this.genderId = genderId;
 		this.sexualOrientId = sexualOrientId;
 		this.phoneNumber = phoneNumber;
@@ -37,11 +53,11 @@ public class User {
 		this.profileUrl = profileUrl;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -67,6 +83,14 @@ public class User {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public int getGenderId() {
