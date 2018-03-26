@@ -1,4 +1,4 @@
-package com.revature.projecttwo.controller.service;
+package com.revature.projecttwo.container.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,8 +7,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.revature.projecttwo.controller.beans.Users;
-import com.revature.projecttwo.controller.repo.UserRepo;
+import com.revature.projecttwo.container.beans.Resident;
+import com.revature.projecttwo.container.repo.UserRepo;
 
 @Service
 public class UserService {
@@ -16,49 +16,49 @@ public class UserService {
 	@Autowired
 	private UserRepo userRepo;
 
-	public List<Users> getAllUsers() {
+	public List<Resident> getAllUsers() {
 		System.out.println("Getting all users:\n\t");
-		List<Users> users = new ArrayList<>();
+		List<Resident> users = new ArrayList<>();
 		// method reference add method call
 		userRepo.findAll().forEach(users::add);
 
 		return users;
 	}
 
-	public List<Users> getUsers(String firstName, String lastName) {
+	public List<Resident> getUsers(String firstName, String lastName) {
 		System.out.println("Getting all users matching:\n\t" + firstName + " " + lastName);
-		List<Users> users = new ArrayList<>();
+		List<Resident> users = new ArrayList<>();
 		// method reference add method call
-		userRepo.getByFirstNameAndLastName(firstName, lastName).forEach(users::add);
+		userRepo.getByFirstNameAndLastNameIgnoreCase(firstName, lastName).forEach(users::add);
 
 		return users;
 	}
 
-	public Users getUser(Integer id) {
+	public Resident getUser(Integer id) {
 		System.out.println("Found User in DB:\n\t" + id);
-		Optional<Users> user = userRepo.findById(id);
+		Optional<Resident> user = userRepo.findById(id);
 
 		return user.get();
 	}
 
-	public Users getUser(String email, String password) {
+	public Resident getUser(String email, String password) {
 		System.out.println("Found User in DB:\n\t" + email + " " + password);
-		Users user = userRepo.getByEmailAndPassword(email, password);
+		Resident user = userRepo.getByEmailAndPassword(email, password);
 
 		return user;
 	}
 
-	public Users getUser(String email) {
+	public Resident getUser(String email) {
 		System.out.println("Found User in DB:\n\t" + email);
 		return userRepo.getByEmail(email);
 	}
 
-	public void addUser(Users user) {
+	public void addUser(Resident user) {
 		System.out.println("Saving User to DB:\n\t" + user);
 		userRepo.save(user);
 	}
 
-	public void updateUser(Users user, String id) {
+	public void updateUser(Resident user, String id) {
 		System.out.println("Updating User to DB:\n\t" + user);
 		userRepo.save(user);
 	}

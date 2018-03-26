@@ -1,9 +1,11 @@
-package com.revature.projecttwo.controller.beans;
+package com.revature.projecttwo.container.beans;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Notification {
@@ -11,18 +13,23 @@ public class Notification {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	private int userId;
+
+	@ManyToOne
+	private Resident user;
+
+	@Size(max = 200)
 	private String content;
+
 	private String url;
 
 	public Notification() {
 
 	}
 
-	public Notification(int id, int userId, String content, String url) {
+	public Notification(int id, Resident user, String content, String url) {
 		super();
 		this.id = id;
-		this.userId = userId;
+		this.user = user;
 		this.content = content;
 		this.url = url;
 	}
@@ -35,12 +42,12 @@ public class Notification {
 		this.id = id;
 	}
 
-	public int getUserId() {
-		return userId;
+	public Resident getUser() {
+		return user;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setUser(Resident user) {
+		this.user = user;
 	}
 
 	public String getContent() {
@@ -61,7 +68,7 @@ public class Notification {
 
 	@Override
 	public String toString() {
-		return "Notification [id=" + id + ", userId=" + userId + ", content=" + content + ", url=" + url + "]";
+		return "Notification [id=" + id + ", user=" + user + ", content=" + content + ", url=" + url + "]";
 	}
 
 }
