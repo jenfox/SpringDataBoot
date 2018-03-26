@@ -67,16 +67,17 @@ public class UserService {
 		// encode the user password before storing it into db
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 
+		System.out.println("Password Encryption = " + user.getPassword());
+
 		return userRepo.save(user);
 	}
-	//
-	// public void addUser(Resident user) {
-	// System.out.println("Saving User to DB:\n\t" + user);
-	// userRepo.save(user);
-	// }
 
-	public void updateUser(Resident user, String id) {
-		System.out.println("Updating User to DB:\n\t" + user);
+	public void updateUser(Resident user) {
+		System.out.println("Updating User in DB:\n\t" + user);
+
+		// check if password changed? and reencode
+		// TODO
+		// user.setPassword(passwordEncoder.encode(user.getPassword()));
 		userRepo.save(user);
 	}
 
