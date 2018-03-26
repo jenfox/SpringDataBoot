@@ -1,12 +1,19 @@
-package com.revature.projecttwo.controller.beans;
+package com.revature.projecttwo.container.beans;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * 
@@ -16,38 +23,52 @@ import javax.persistence.Id;
  *
  */
 @Entity
-public class Users {
+public class Resident {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
+
 	@Column(unique = true)
 	private String email;
+
 	private String firstName;
+
 	private String lastName;
+
 	private String password;
-	private int genderId;
-	private int sexualOrientId;
+
+	@OneToOne
+	private Gender gender;
+
 	@Column(unique = true)
 	private String phoneNumber;
+
+	@Temporal(TemporalType.DATE)
 	private Date dob;
+
 	@Column(unique = true)
 	private String profileUrl;
 
-	public Users() {
+	@OneToMany
+	private List<Post> posts;
+
+	@OneToMany
+	private List<Notification> notifications;
+
+	public Resident() {
 
 	}
 
-	public Users(Integer id, String email, String firstName, String lastName, String password, int genderId,
-			int sexualOrientId, String phoneNumber, Date dob, String profileUrl) {
+	public Resident(Integer id, String email, String firstName, String lastName, String password, Gender genderId,
+			String phoneNumber, Date dob, String profileUrl) {
 		super();
 		this.id = id;
 		this.email = email;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.password = password;
-		this.genderId = genderId;
-		this.sexualOrientId = sexualOrientId;
+		this.gender = genderId;
 		this.phoneNumber = phoneNumber;
 		this.dob = dob;
 		this.profileUrl = profileUrl;
@@ -93,20 +114,13 @@ public class Users {
 		this.password = password;
 	}
 
-	public int getGenderId() {
-		return genderId;
+	@ManyToOne(cascade = CascadeType.ALL)
+	public Gender getGender() {
+		return gender;
 	}
 
-	public void setGenderId(int genderId) {
-		this.genderId = genderId;
-	}
-
-	public int getSexualOrientId() {
-		return sexualOrientId;
-	}
-
-	public void setSexualOrientId(int sexualOrientId) {
-		this.sexualOrientId = sexualOrientId;
+	public void setGender(Gender genderId) {
+		this.gender = genderId;
 	}
 
 	public String getPhoneNumber() {
@@ -136,8 +150,8 @@ public class Users {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", genderId=" + genderId + ", sexualOrientId=" + sexualOrientId + ", phoneNumber=" + phoneNumber
-				+ ", dob=" + dob + ", profileUrl=" + profileUrl + "]";
+				+ ", genderId=" + gender + ", phoneNumber=" + phoneNumber + ", dob=" + dob + ", profileUrl="
+				+ profileUrl + "]";
 	}
 
 }

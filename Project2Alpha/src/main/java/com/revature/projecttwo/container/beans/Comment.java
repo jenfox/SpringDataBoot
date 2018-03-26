@@ -1,9 +1,12 @@
-package com.revature.projecttwo.controller.beans;
+package com.revature.projecttwo.container.beans;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Comment {
@@ -11,19 +14,27 @@ public class Comment {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	private int authorId;
-	private int receiverId;
+
+	@ManyToOne
+	private Resident author;
+
+	@ManyToOne
+	private Resident recevier;
+
+	@NotBlank
 	private int postId;
+
+	@Size(max = 500)
 	private String content;
 
 	public Comment() {
 	}
 
-	public Comment(int id, int authorId, int receiverId, int postId, String content) {
+	public Comment(int id, Resident author, Resident receiever, int postId, String content) {
 		super();
 		this.id = id;
-		this.authorId = authorId;
-		this.receiverId = receiverId;
+		this.author = author;
+		this.recevier = receiever;
 		this.postId = postId;
 		this.content = content;
 	}
@@ -36,20 +47,20 @@ public class Comment {
 		this.id = id;
 	}
 
-	public int getAuthorId() {
-		return authorId;
+	public Resident getAuthor() {
+		return author;
 	}
 
-	public void setAuthorId(int authorId) {
-		this.authorId = authorId;
+	public void setAuthor(Resident authorId) {
+		this.author = authorId;
 	}
 
-	public int getReceiverId() {
-		return receiverId;
+	public Resident getReceiverId() {
+		return recevier;
 	}
 
-	public void setReceiverId(int receiverId) {
-		this.receiverId = receiverId;
+	public void setReceiver(Resident receiverId) {
+		this.recevier = receiverId;
 	}
 
 	public int getPostId() {
@@ -70,7 +81,7 @@ public class Comment {
 
 	@Override
 	public String toString() {
-		return "Comment [id=" + id + ", authorId=" + authorId + ", receiverId=" + receiverId + ", postId=" + postId
+		return "Comment [id=" + id + ", author=" + author + ", receiver=" + recevier + ", postId=" + postId
 				+ ", content=" + content + "]";
 	}
 

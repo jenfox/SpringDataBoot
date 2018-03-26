@@ -1,4 +1,4 @@
-package com.revature.projecttwo.controller.service;
+package com.revature.projecttwo.container.service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,8 +8,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.revature.projecttwo.controller.beans.Post;
-import com.revature.projecttwo.controller.repo.PostRepo;
+import com.revature.projecttwo.container.beans.Post;
+import com.revature.projecttwo.container.repo.PostRepo;
 
 @Service
 public class PostService {
@@ -25,6 +25,24 @@ public class PostService {
 
 		return posts;
 	}
+
+	public List<Post> getPrevious20Posts() {
+		System.out.println("Getting last 20 posts:\n\t");
+		List<Post> posts = new ArrayList<>();
+		// method reference add method call
+		postRepo.findTop20ByOrderByDateCreatedDesc().forEach(posts::add);
+
+		return posts;
+	}
+	//
+	// public List<Post> getAllPostsPast(Date date) {
+	// System.out.println("Getting all posts past date:\n\t" + date);
+	// List<Post> posts = new ArrayList<>();
+	// // method reference add method call
+	// postRepo.findTop20ByGreaterThanDateCreatedOrderByDateCreated(date).forEach(posts::add);
+	//
+	// return posts;
+	// }
 
 	public Post getPost(Integer id) {
 		System.out.println("Found Post in DB:\n\t" + id);

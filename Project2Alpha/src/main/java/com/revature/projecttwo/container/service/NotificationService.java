@@ -1,4 +1,4 @@
-package com.revature.projecttwo.controller.service;
+package com.revature.projecttwo.container.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,8 +7,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.revature.projecttwo.controller.beans.Notification;
-import com.revature.projecttwo.controller.repo.NotificationRepo;
+import com.revature.projecttwo.container.beans.Notification;
+import com.revature.projecttwo.container.repo.NotificationRepo;
 
 @Service
 public class NotificationService {
