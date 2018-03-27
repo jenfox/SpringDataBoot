@@ -38,9 +38,10 @@ public class AmazonClient {
 	public String uploadFile(MultipartFile multipartFile) {
 
 		String fileUrl = "";
+		String fileName = "";
 		try {
 			File file = convertMultiPartToFile(multipartFile);
-			String fileName = generateFileName(multipartFile);
+			fileName = generateFileName(multipartFile);
 			// fileUrl is what we return so we know how to get back to the picture that we
 			// posted
 			fileUrl = endpointUrl + "/" + bucketName + "/" + fileName;
@@ -50,7 +51,7 @@ public class AmazonClient {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return fileUrl;
+		return fileName;
 	}
 
 	public String deleteFileFromS3Bucket(String fileUrl) {

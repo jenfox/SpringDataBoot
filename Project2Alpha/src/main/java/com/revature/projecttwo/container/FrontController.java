@@ -125,14 +125,15 @@ public class FrontController {
 		return ResponseEntity.ok(true);
 	}
 
-	@RequestMapping(method = RequestMethod.POST, value = "/profilePictures")
-	public ResponseEntity<Boolean> updateProfilePic(@RequestBody MultipartFile multipartFile) {
+	@RequestMapping(method = RequestMethod.POST, value = "/profilePictures/{uid}")
+	public ResponseEntity<Boolean> updateProfilePic(@RequestBody MultipartFile multipartFile, @PathVariable int uid) {
 		System.out.println("Updating Profile Pic:\n\t ");
 
 		// TODO S3
-		String filepath = "C:\\Users\\Joshua\\Pictures\\Memes\\testPic.png";
+//		String filepath = "C:\\Users\\Joshua\\Pictures\\Memes\\testPic.png";
 
 		String url = ac.uploadFile(multipartFile);
+		userService.updateUserImage(url, uid);
 		System.out.println(url);
 
 		// TODO update user URL
