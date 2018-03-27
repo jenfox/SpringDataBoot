@@ -15,6 +15,7 @@ import com.revature.projecttwo.container.beans.Comment;
 import com.revature.projecttwo.container.beans.Notification;
 import com.revature.projecttwo.container.beans.Post;
 import com.revature.projecttwo.container.beans.Resident;
+import com.revature.projecttwo.container.dtos.UserDto;
 import com.revature.projecttwo.container.service.CommentService;
 import com.revature.projecttwo.container.service.NotificationService;
 import com.revature.projecttwo.container.service.PostService;
@@ -59,9 +60,6 @@ public class FrontController {
 			System.out.println("No user Found with email password combination");
 			return ResponseEntity.ok(null);
 
-		} else {
-			// User exists and matches email/password in DB
-			// TODO Authenticate
 		}
 		return ResponseEntity.ok(userFound);
 	}
@@ -94,11 +92,21 @@ public class FrontController {
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/users/{firstName}/{lastName}")
-	public ResponseEntity<List<Resident>> getUser(@PathVariable String firstName, @PathVariable String lastName) {
+	public ResponseEntity<List<UserDto>> getUsers(@PathVariable String firstName, @PathVariable String lastName) {
 
 		System.out.println("Getting user:\n\t " + firstName + " " + lastName);
 
-		List<Resident> users = userService.getUsers(firstName, lastName);
+		List<UserDto> users = userService.getUsers(firstName, lastName);
+
+		return ResponseEntity.ok(users);
+	}
+
+	@RequestMapping(method = RequestMethod.GET, value = "/users/find/{name}")
+	public ResponseEntity<List<UserDto>> getUserByMatch(@PathVariable String name) {
+
+		System.out.println("Finding users matching:\n\t " + name);
+
+		List<UserDto> users = userService.getUsersDtosMatching(name);
 
 		return ResponseEntity.ok(users);
 	}
@@ -114,10 +122,12 @@ public class FrontController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/profilePictures")
-	public ResponseEntity<Boolean> updateProfilePic(@RequestBody String url) {
-		System.out.println("Update Profile Pic:\n\t " + url);
+	public ResponseEntity<Boolean> updateProfilePic(@RequestBody Resident user) {
+		System.out.println("Update Profile Pic:\n\t " + user.getProfileUrl());
 
 		// TODO S3
+
+		userService.updateUser(user);
 
 		return ResponseEntity.ok(true);
 	}

@@ -5,33 +5,27 @@ package com.revature.projecttwo.container.dtos;
  */
 public class UserDto {
 
-	private String email;
+	private Integer id;
 	private String firstName;
 	private String lastName;
-	private String gender;
-	private String phoneNumber;
-	private String dob;
 
 	public UserDto() {
 
 	}
 
-	public UserDto(String email, String firstName, String lastName, String gender, String phoneNumber, String dob) {
+	public UserDto(Integer id, String firstName, String lastName) {
 		super();
-		this.email = email;
+		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.gender = gender;
-		this.phoneNumber = phoneNumber;
-		this.dob = dob;
 	}
 
-	public String getEmail() {
-		return email;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getFirstName() {
@@ -48,30 +42,6 @@ public class UserDto {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
-	}
-
-	public String getGender() {
-		return gender;
-	}
-
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
-
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
-
-	public String getDob() {
-		return dob;
-	}
-
-	public void setDob(String dob) {
-		this.dob = dob;
 	}
 
 }
