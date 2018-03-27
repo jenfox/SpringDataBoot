@@ -130,8 +130,10 @@ public class FrontController {
 		System.out.println("Updating Profile Pic:\n\t ");
 
 		// TODO S3
+		String filepath = "C:\\Users\\Joshua\\Pictures\\Memes\\testPic.png";
 
-		ac.uploadFile(multipartFile);
+		String url = ac.uploadFile(multipartFile);
+		System.out.println(url);
 
 		// TODO update user URL
 		// userService.updateUser(user);

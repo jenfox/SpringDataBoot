@@ -90,4 +90,21 @@ public class AmazonClient {
 
 	}
 
+	public String uploadFile3(String fileName, String filepath) {
+
+		String fileUrl = "";
+		try {
+			// fileUrl is what we return so we know how to get back to the picture that we
+			// posted
+			File f = new File(filepath);
+			fileUrl = endpointUrl + "/" + bucketName + "/" + fileName;
+			// calls another method to upload into the S3 bucket
+			s3client.putObject(new PutObjectRequest(bucketName, fileName, f).withCannedAcl(CannedAccessControlList.PublicRead));
+			f.delete();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return fileUrl;
+	}
+	
 }
