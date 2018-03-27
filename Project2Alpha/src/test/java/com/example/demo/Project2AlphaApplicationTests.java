@@ -1,16 +1,29 @@
 package com.example.demo;
 
+import static org.junit.Assert.assertNotNull;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
+import com.revature.projecttwo.container.repo.UserRepo;
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@DataJpaTest
 public class Project2AlphaApplicationTests {
 
+	@Autowired
+	private TestEntityManager entityManager;
+
+	@Autowired
+	private UserRepo userRepo;
+
 	@Test
-	public void contextLoads() {
+	public void repoLoads() {
+		assertNotNull(userRepo);
 	}
 
 }
