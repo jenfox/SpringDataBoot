@@ -20,7 +20,6 @@ import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import com.revature.projecttwo.container.FrontController;
-import com.revature.projecttwo.container.beans.Gender;
 import com.revature.projecttwo.container.beans.Resident;
 import com.revature.projecttwo.container.service.CommentService;
 import com.revature.projecttwo.container.service.NotificationService;
@@ -54,7 +53,7 @@ public class FrontControllerTest {
 
 	@Test
 	public void testRegister() throws Exception {
-		Gender mockGender = new Gender("test");
+		String mockGender = "test";
 		Date dobTest = new Date();
 
 		Resident mockUser = new Resident(1, "test@test.com", "Testy", "McTesterson", "test", mockGender, "555-555-5555",
