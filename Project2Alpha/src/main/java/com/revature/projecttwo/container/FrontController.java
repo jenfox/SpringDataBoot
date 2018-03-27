@@ -45,7 +45,7 @@ public class FrontController {
 
 		// TODO validation - i.e. all required user fields present
 
-		userService.addUser(user);
+		userService.registerNewUserAccount(user);
 
 		// Email
 		emailService.sendSimpleMessage(user.getEmail(), "Register", "Hi, welcome to our social site test");
@@ -54,19 +54,19 @@ public class FrontController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/login")
-	public ResponseEntity<Boolean> login(@RequestBody Resident user) {
+	public ResponseEntity<Resident> login(@RequestBody Resident user) {
 		System.out.println("Logging in User:\n\t " + user);
 
 		Resident userFound = userService.getUser(user.getEmail(), user.getPassword());
 		if (userFound == null) {
 			System.out.println("No user Found with email password combination");
-			return ResponseEntity.ok(false);
+			return ResponseEntity.ok(null);
 
 		} else {
 			// User exists and matches email/password in DB
 			// TODO Authenticate
 		}
-		return ResponseEntity.ok(true);
+		return ResponseEntity.ok(userFound);
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/reset")
@@ -113,7 +113,7 @@ public class FrontController {
 		System.out.println("Updating User:\n\t " + user);
 
 		// TODO Validation
-		userService.addUser(user);
+		userService.updateUser(user);
 
 		return ResponseEntity.ok(true);
 	}

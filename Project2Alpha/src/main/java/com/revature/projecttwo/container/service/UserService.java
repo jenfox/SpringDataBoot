@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.revature.projecttwo.container.beans.Resident;
@@ -15,6 +16,9 @@ public class UserService {
 
 	@Autowired
 	private UserRepo userRepo;
+
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	public List<Resident> getAllUsers() {
 		System.out.println("Getting all users:\n\t");
@@ -53,13 +57,27 @@ public class UserService {
 		return userRepo.getByEmail(email);
 	}
 
-	public void addUser(Resident user) {
+	public Resident registerNewUserAccount(Resident user) {// throws EmailExistsException {
+		// if (emailExist(accountDto.getEmail())) {
+		// throw new EmailExistsException("There is an account with that email adress:"
+		// + accountDto.getEmail());
+		// }
 		System.out.println("Saving User to DB:\n\t" + user);
-		userRepo.save(user);
+
+		// encode the user password before storing it into db
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
+
+		System.out.println("Password Encryption = " + user.getPassword());
+
+		return userRepo.save(user);
 	}
 
-	public void updateUser(Resident user, String id) {
-		System.out.println("Updating User to DB:\n\t" + user);
+	public void updateUser(Resident user) {
+		System.out.println("Updating User in DB:\n\t" + user);
+
+		// check if password changed? and reencode
+		// TODO
+		// user.setPassword(passwordEncoder.encode(user.getPassword()));
 		userRepo.save(user);
 	}
 
