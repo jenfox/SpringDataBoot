@@ -18,12 +18,7 @@ public class Project2AlphaApplicationTests {
 	@Autowired
 	private TestEntityManager entityManager;
 
-	@Autowired
-	private UserRepo userRepo;
-
-	@Test
-	public void repoLoads() {
-		assertNotNull(userRepo);
+	
 	}
 
 }

@@ -3,6 +3,8 @@ package com.revature.test.unit;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -25,8 +27,10 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.projecttwo.container.FrontController;
 import com.revature.projecttwo.container.beans.Gender;
+import com.revature.projecttwo.container.beans.Post;
 import com.revature.projecttwo.container.beans.Resident;
 import com.revature.projecttwo.container.service.CommentService;
 import com.revature.projecttwo.container.service.NotificationService;
@@ -62,19 +66,22 @@ public class FrontControllerTest {
 	@Test
 	public void testRegister() throws Exception
 	{
+		//mock beans for Testing
 		Gender mockGender = new Gender("test");
 		Date dobTest = new Date();
 		
+		//mock User Bean
 		Resident mockUser= new Resident(1, "test@test.com", "Testy", "McTesterson", "test", mockGender,
 				"555-555-5555", dobTest , "www.testy.com");
 		
+		//mock JSON
 		String tstUsrJSON = "{\"email\":\"test@test.com\",\"password\":\"test\"}";
 
-		// studentService.addCourse to respond back with mockCourse
+		
 		Mockito.when( userService.registerNewUserAccount(
 				Mockito.any(Resident.class))).thenReturn(mockUser);
 
-		// Send course as body to /students/Student1/courses
+
 		RequestBuilder requestBuilder = MockMvcRequestBuilders
 				.post("/register")
 				.accept(MediaType.APPLICATION_JSON).content(tstUsrJSON)
@@ -85,8 +92,6 @@ public class FrontControllerTest {
 		MockHttpServletResponse response = result.getResponse();
 
 		assertEquals(HttpStatus.OK.value(), response.getStatus());
-
-		System.out.println("Response Location: " + response.getHeader(HttpHeaders.LOCATION));
 		
 		/*// response header location is Null. Not sure why
 		assertEquals("http://localhost/register",
@@ -95,15 +100,74 @@ public class FrontControllerTest {
 	}
 	
 //	@Test
-//	public void testLogin()
+//	public void testLogin() throws Exception
 //	{
+//		//mock beans for Testing
+//		Gender mockGender = new Gender("test");
+//		Date dobTest = new Date();
 //		
+//		//mock User Bean
+//		Resident mockUser= new Resident(1, "test@test.com", "Testy", "McTesterson", "test", mockGender,
+//				"555-555-5555", dobTest , "www.testy.com");
+//		
+//		//mock JSON
+//		String tstUsrJSON = "{\"email\":\"test@test.com\",\"password\":\"test\"}";
+//
+//		
+//		Mockito.when( fntContTest.login(
+//				Mockito.any(Resident.class))).thenReturn(mockUser);
+//
+//		RequestBuilder requestBuilder = MockMvcRequestBuilders
+//				.post("/login")
+//				.accept(MediaType.APPLICATION_JSON).content(tstUsrJSON)
+//				.contentType(MediaType.APPLICATION_JSON);
+//
+//		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+//
+//		MockHttpServletResponse response = result.getResponse();
+//
+//		assertEquals(HttpStatus.OK.value(), response.getStatus());
+//		
+//		/*// response header location is Null. Not sure why
+//		assertEquals("http://localhost/register",
+//				response.getHeader(HttpHeaders.LOCATION));
+//		*/
 //	}
 //	
 //	@Test
-//	public void testResetPassword()
+//	public void testResetPassword() throws Exception
 //	{
+//		//mock beans for Testing
+//		Gender mockGender = new Gender("test");
+//		Date dobTest = new Date();
 //		
+//		//mock User Bean
+//		Resident mockUser= new Resident(1, "test@test.com", "Testy", "McTesterson", "test", mockGender,
+//				"555-555-5555", dobTest , "www.testy.com");
+//		
+//		//mock JSON
+//		String tstUsrJSON = "{\"email\":\"test@test.com\"}";
+//	
+//		
+//		Mockito.when( fntContTest.resetPassword(
+//				Mockito.anyString())).thenReturn(mockUser);
+//	
+//		RequestBuilder requestBuilder = MockMvcRequestBuilders
+//				.post("/reset")
+//				.accept(MediaType.APPLICATION_JSON).content(tstUsrJSON)
+//				.contentType(MediaType.APPLICATION_JSON);
+//	
+//		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+//	
+//		MockHttpServletResponse response = result.getResponse();
+//	
+//		assertEquals(HttpStatus.OK.value(), response.getStatus());
+//	
+//		
+//		/*// response header location is Null. Not sure why
+//		assertEquals("http://localhost/register",
+//				response.getHeader(HttpHeaders.LOCATION));
+//		*/
 //	}
 //	
 //	@Test
@@ -119,57 +183,145 @@ public class FrontControllerTest {
 //	}
 //
 //	@Test
-//	public void updateProfile()
+//	public void updateProfile() throws Exception
 //	{
+//		//mock beans for Testing
+//		Gender mockGender = new Gender("test");
+//		Date dobTest = new Date();
 //		
+////		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm a z");
+////		ObjectMapper myObjectMapper = new ObjectMapper();
+////		myObjectMapper.setDateFormat(df);		
+////		String dobStr = df.format(dobTest);
+//		
+//		//mock User Bean
+//		Resident mockUser= new Resident(1, "test@test.com", "Testy", "McTesterson", "test", mockGender,
+//				"555-555-5555", dobTest , "www.testy.com");
+//		
+//		//TODO Add Date Component
+//		String tstUsrJSON = "{\"email\":\"test@test.com\",\"firstName\":\"Testy\",\"lastName\":\"McTesterson\",\"genderID\":\"test\",\"phoneNum\":\"555-555-5555\"}";
+//		
+//		Mockito.when( userService.registerNewUserAccount(
+//				Mockito.any(Resident.class))).thenReturn(mockUser);
+//
+//		RequestBuilder requestBuilder = MockMvcRequestBuilders
+//				.post("/users")
+//				.accept(MediaType.APPLICATION_JSON).content(tstUsrJSON)
+//				.contentType(MediaType.APPLICATION_JSON);
+//
+//		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+//
+//		MockHttpServletResponse response = result.getResponse();
+//
+//		assertEquals(HttpStatus.OK.value(), response.getStatus());
+//		
+//		/*// response header location is Null. Not sure why
+//		assertEquals("http://localhost/register",
+//				response.getHeader(HttpHeaders.LOCATION));
+//		*/
 //	}
 //
 //	@Test
-//	public void testUpdateProfilePic()
+//	public void testUpdateProfilePic() throws Exception
 //	{
+//		//mock beans for Testing
+//		Gender mockGender = new Gender("test");
+//		Date dobTest = new Date();
 //		
-//	}
+//		//mock User Bean
+//		Post mockPost = new Post();
+//		
+//		//TODO Add Date Component
+//		String tstPstJSON = "{\"url\":\"www.testy.com\"}";
+//		
+//		Mockito.when( userService.registerNewUserAccount(
+//				Mockito.any(Resident.class))).thenReturn(mockPost);
 //
-//	@Test
-//	public void testSavePost()
-//	{
-//		
-//	}
-//	
-//	@Test
-//	public void testGetFeed()
-//	{
-//		
-//	}
+//		RequestBuilder requestBuilder = MockMvcRequestBuilders
+//				.post("/profilePictures")
+//				.accept(MediaType.APPLICATION_JSON).content(tstUsrJSON)
+//				.contentType(MediaType.APPLICATION_JSON);
 //
-//	@Test
-//	public void testLikePost()
-//	{
-//		
-//	}
+//		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 //
-//	@Test
-//	public void testComment()
-//	{
-//		
-//	}
+//		MockHttpServletResponse response = result.getResponse();
 //
-//	@Test
-//	public void testGetComments()
-//	{
+//		assertEquals(HttpStatus.OK.value(), response.getStatus());
 //		
+//		/*// response header location is Null. Not sure why
+//		assertEquals("http://localhost/register",
+//				response.getHeader(HttpHeaders.LOCATION));
+//		*/
 //	}
-//
-//	@Test
-//	public void testGetNotification()
-//	{
-//		
-//	}
-//
-//	@Test
-//	public void testAddNotification()
-//	{
-//		
-//	}
+
+	@Test
+	public void testSavePost() throws Exception
+	{
+		//mock beans for Testing
+		Gender mockGender = new Gender("test");
+		Date dobTest = new Date();
+		
+		//mock User Bean
+		Resident mockUser= new Resident(1, "test@test.com", "Testy", "McTesterson", "test", mockGender,
+				"555-555-5555", dobTest , "www.testy.com");
+		
+		//TODO Add Date Component
+		String tstUsrJSON = "{\"url\":\"www.testy.com\"}";
+		
+		Mockito.when( userService.registerNewUserAccount(
+				Mockito.any(Resident.class))).thenReturn(mockUser);
+
+		RequestBuilder requestBuilder = MockMvcRequestBuilders
+				.post("/posts")
+				.accept(MediaType.APPLICATION_JSON).content(tstUsrJSON)
+				.contentType(MediaType.APPLICATION_JSON);
+
+		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+
+		MockHttpServletResponse response = result.getResponse();
+
+		assertEquals(HttpStatus.OK.value(), response.getStatus());
+		
+		/*// response header location is Null. Not sure why
+		assertEquals("http://localhost/register",
+				response.getHeader(HttpHeaders.LOCATION));
+		*/
+	}
+	
+	@Test
+	public void testGetFeed()
+	{
+		
+	}
+
+	@Test
+	public void testLikePost()
+	{
+		
+	}
+
+	@Test
+	public void testComment()
+	{
+		
+	}
+
+	@Test
+	public void testGetComments()
+	{
+		
+	}
+
+	@Test
+	public void testGetNotification()
+	{
+		
+	}
+
+	@Test
+	public void testAddNotification()
+	{
+		
+	}
 
 }
