@@ -122,20 +122,22 @@ public class FrontController {
 		return ResponseEntity.ok(userService.updateUser(user, id));
 	}
 
+	@RequestMapping(method = RequestMethod.POST, value = "/users/password")
+	public ResponseEntity<Boolean> changePassword(@RequestBody Resident userSkeleton) {
+		System.out.println("Resetting Password to:\n\t " + userSkeleton);
+
+		return ResponseEntity.ok(userService.changePassword(userSkeleton));
+	}
+
 	@RequestMapping(method = RequestMethod.POST, value = "/profilePictures/{uid}")
 	public ResponseEntity<Boolean> updateProfilePic(@RequestBody MultipartFile multipartFile, @PathVariable int uid) {
 		System.out.println("Updating Profile Pic:\n\t ");
 
-		// TODO S3
-//		String filepath = "C:\\Users\\Joshua\\Pictures\\Memes\\testPic.png";
+		// String filepath = "C:\\Users\\Joshua\\Pictures\\Memes\\testPic.png";
 
 		String url = ac.uploadFile(multipartFile);
 		userService.updateUserImage(url, uid);
 		System.out.println(url);
-
-		// TODO update user URL
-
-		// userService.updateUser(user);
 
 		return ResponseEntity.ok(true);
 

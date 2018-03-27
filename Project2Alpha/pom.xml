@@ -94,7 +94,7 @@
 		    <groupId>com.amazonaws</groupId>
 		    <artifactId>aws-java-sdk-s3</artifactId>
 		    <version>1.11.301</version>
-
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.skyscreamer/jsonassert -->
 		<dependency>
 		    <groupId>org.skyscreamer</groupId>
