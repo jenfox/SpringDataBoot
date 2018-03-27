@@ -229,7 +229,6 @@ public class FrontController {
 	@RequestMapping(method = RequestMethod.POST, value ="/picture")
 	public ResponseEntity<Boolean> postPic(MultipartFile multipartFile){
 		ac.uploadFile(multipartFile);
-		
 		return ResponseEntity.ok(true);
 		
 	}
