@@ -3,15 +3,12 @@ package com.revature.projecttwo.container.beans;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -38,8 +35,7 @@ public class Resident {
 
 	private String password;
 
-	@OneToOne
-	private Gender gender;
+	private String gender;
 
 	@Column(unique = true)
 	private String phoneNumber;
@@ -60,7 +56,7 @@ public class Resident {
 
 	}
 
-	public Resident(Integer id, String email, String firstName, String lastName, String password, Gender genderId,
+	public Resident(Integer id, String email, String firstName, String lastName, String password, String genderId,
 			String phoneNumber, Date dob, String profileUrl) {
 		super();
 		this.id = id;
@@ -114,13 +110,12 @@ public class Resident {
 		this.password = password;
 	}
 
-	@ManyToOne(cascade = CascadeType.ALL)
-	public Gender getGender() {
+	public String getGender() {
 		return gender;
 	}
 
-	public void setGender(Gender genderId) {
-		this.gender = genderId;
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 
 	public String getPhoneNumber() {

@@ -44,17 +44,20 @@ public class FrontController {
 	@RequestMapping(method = RequestMethod.POST, value = "/register")
 	public ResponseEntity<Boolean> register(@RequestBody Resident user) {
 		System.out.println("Registering User:\n\t " + user);
+		String plainTextPassword = user.getPassword();
 
-		// TODO validation - i.e. all required user fields present
+		if (userService.registerNewUserAccount(user)) {
 
-		userService.registerNewUserAccount(user);
+			// Email Registered
+			emailService.sendRegister(user.getEmail(), plainTextPassword);
 
-		// Email Registered
-		emailService.sendRegister(user.getEmail(), user.getPassword());
-
-		return ResponseEntity.ok(true);
+			return ResponseEntity.ok(true);
+		}
+		// unable to register user
+		return ResponseEntity.ok(false);
 	}
 
+	// email, password
 	@RequestMapping(method = RequestMethod.POST, value = "/login")
 	public ResponseEntity<Resident> login(@RequestBody Resident user) {
 		System.out.println("Logging in User:\n\t " + user);
@@ -68,20 +71,15 @@ public class FrontController {
 		return ResponseEntity.ok(userFound);
 	}
 
+	// email
 	@RequestMapping(method = RequestMethod.POST, value = "/reset")
 	public ResponseEntity<Boolean> resetPassword(@RequestBody Resident userSkeleton) {
 		System.out.println("Reset Password:\n\t " + userSkeleton.getEmail());
 
 		// validate email
 		Resident user = userService.getUser(userSkeleton.getEmail());
-		// no email exists -> return false
-		if (user == null) {
-			System.out.println("No matching Email");
-			return ResponseEntity.ok(false);
-		} else {
-			// send email to reset
-			emailService.sendReset(user.getEmail());
-		}
+
+		userService.resetPassword(user);
 
 		return ResponseEntity.ok(true);
 	}
@@ -95,6 +93,7 @@ public class FrontController {
 		return ResponseEntity.ok(user);
 	}
 
+	// first, last
 	@RequestMapping(method = RequestMethod.GET, value = "/users/{firstName}/{lastName}")
 	public ResponseEntity<List<UserDto>> getUsers(@PathVariable String firstName, @PathVariable String lastName) {
 
@@ -105,6 +104,7 @@ public class FrontController {
 		return ResponseEntity.ok(users);
 	}
 
+	// name
 	@RequestMapping(method = RequestMethod.GET, value = "/users/find/{name}")
 	public ResponseEntity<List<UserDto>> getUserByMatch(@PathVariable String name) {
 
@@ -115,14 +115,11 @@ public class FrontController {
 		return ResponseEntity.ok(users);
 	}
 
-	@RequestMapping(method = RequestMethod.POST, value = "/users")
-	public ResponseEntity<Boolean> updateProfile(@RequestBody Resident user) {
+	@RequestMapping(method = RequestMethod.POST, value = "/users/{id}")
+	public ResponseEntity<Resident> updateProfile(@PathVariable Integer id, @RequestBody Resident user) {
 		System.out.println("Updating User:\n\t " + user);
 
-		// TODO Validation
-		userService.updateUser(user);
-
-		return ResponseEntity.ok(true);
+		return ResponseEntity.ok(userService.updateUser(user, id));
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/profilePictures/{uid}")
@@ -137,12 +134,14 @@ public class FrontController {
 		System.out.println(url);
 
 		// TODO update user URL
+
 		// userService.updateUser(user);
 
 		return ResponseEntity.ok(true);
 
 	}
 
+	// content, imageUrl, youtubeUrl
 	@RequestMapping(method = RequestMethod.POST, value = "/posts")
 	public ResponseEntity<Boolean> savePost(@RequestBody Post post) {
 		System.out.println("Saving Post:\n\t " + post);
@@ -191,6 +190,7 @@ public class FrontController {
 	// return ResponseEntity.ok(posts);
 	// }
 
+	// int
 	@RequestMapping(method = RequestMethod.POST, value = "/likes/{postId}")
 	public ResponseEntity<Boolean> likePost(@PathVariable Integer postId) {
 		System.out.println("Like Post:\n\t " + postId);
@@ -202,6 +202,7 @@ public class FrontController {
 		return ResponseEntity.ok(true);
 	}
 
+	// content, postId
 	@RequestMapping(method = RequestMethod.POST, value = "/comments")
 	public ResponseEntity<Boolean> comment(@RequestBody Comment comment) {
 		System.out.println("Commenting:\n\t " + comment);
