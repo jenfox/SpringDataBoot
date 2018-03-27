@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.revature.projecttwo.bucket.AmazonClient;
 import com.revature.projecttwo.container.beans.Comment;
 import com.revature.projecttwo.container.beans.Notification;
 import com.revature.projecttwo.container.beans.Post;
@@ -36,6 +38,8 @@ public class FrontController {
 	private NotificationService notificationService;
 	@Autowired
 	private EmailServiceImpl emailService;
+	@Autowired
+	private AmazonClient ac;
 
 	@RequestMapping(method = RequestMethod.POST, value = "/register")
 	public ResponseEntity<Boolean> register(@RequestBody Resident user) {
@@ -122,14 +126,18 @@ public class FrontController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/profilePictures")
-	public ResponseEntity<Boolean> updateProfilePic(@RequestBody Resident user) {
-		System.out.println("Update Profile Pic:\n\t " + user.getProfileUrl());
+	public ResponseEntity<Boolean> updateProfilePic(@RequestBody MultipartFile multipartFile) {
+		System.out.println("Updating Profile Pic:\n\t ");
 
 		// TODO S3
 
-		userService.updateUser(user);
+		ac.uploadFile(multipartFile);
+
+		// TODO update user URL
+		// userService.updateUser(user);
 
 		return ResponseEntity.ok(true);
+
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/posts")
