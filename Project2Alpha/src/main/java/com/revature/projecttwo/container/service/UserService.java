@@ -216,11 +216,25 @@ public class UserService {
 
 	}
 
+	public boolean changePassword(Resident user) {
+
+		if (!userValidation.checkUserHasEmail(user)) {
+			System.out.println("No User email\n\t" + user);
+			return false;
+		}
+		Resident userFound = userRepo.getByEmail(user.getEmail());
+		System.out.println("Changing user password\n\t" + user.getPassword());
+		userFound.setPassword(user.getPassword());
+
+		return updateUserPassword(userFound);
+
+	}
+
 	public void deleteUser(Integer id) {
 		System.out.println("Deleting User to DB:+\n\t" + id);
 		userRepo.deleteById(id);
 	}
-	
+
 	public void updateUserImage(String path, int userId) {
 		System.out.println("Updating user picture in DB:+\n\t" + userId + " " + path);
 		Resident user = userRepo.getById(userId);
