@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.revature.projecttwo.container.beans.Comment;
 import com.revature.projecttwo.container.beans.Notification;
@@ -20,6 +21,7 @@ import com.revature.projecttwo.container.service.NotificationService;
 import com.revature.projecttwo.container.service.PasswordService;
 import com.revature.projecttwo.container.service.PostService;
 import com.revature.projecttwo.container.service.UserService;
+import com.revature.projecttwo.controller.service.AmazonClient;
 import com.revature.projecttwo.email.EmailServiceImpl;
 
 @CrossOrigin
@@ -38,6 +40,8 @@ public class FrontController {
 	private EmailServiceImpl emailService;
 	@Autowired
 	private PasswordService passwordService;
+	@Autowired
+	private AmazonClient ac;
 
 	@RequestMapping(method = RequestMethod.POST, value = "/register")
 	public ResponseEntity<Boolean> register(@RequestBody Resident user) {
@@ -220,6 +224,14 @@ public class FrontController {
 		notificationService.addNotification(notification);
 
 		return ResponseEntity.ok(true);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, value ="/picture")
+	public ResponseEntity<Boolean> postPic(MultipartFile multipartFile){
+		ac.uploadFile(multipartFile);
+		
+		return ResponseEntity.ok(true);
+		
 	}
 
 }

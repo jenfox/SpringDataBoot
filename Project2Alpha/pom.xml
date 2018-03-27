@@ -65,9 +65,9 @@
 		
 		 <!-- Local Oracle Driver JDBC jar  -->
 	  	<dependency>
-		     <groupId>com.oracle.jdbc</groupId>
-		     <artifactId>objdbc8</artifactId>
-		     <version>12.2.0.1</version>
+		    <groupId>com.oracle</groupId>
+	        <artifactId>ojdbc8</artifactId>
+	        <version>12.2.0.1</version>
 		</dependency>
 		
 		<!-- Email Dependencies -->
@@ -75,6 +75,12 @@
 		<dependency>
 		    <groupId>org.springframework.boot</groupId>
 		    <artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+		
+		<dependency>
+		    <groupId>com.amazonaws</groupId>
+		    <artifactId>aws-java-sdk</artifactId>
+		    <version>1.11.133</version>
 		</dependency>
 	</dependencies>
 
