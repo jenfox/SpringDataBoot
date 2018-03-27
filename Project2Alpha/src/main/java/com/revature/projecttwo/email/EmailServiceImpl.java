@@ -9,15 +9,11 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
 
-import com.revature.projecttwo.container.service.PasswordService;
-
 @Component
 public class EmailServiceImpl {
 
 	@Autowired
 	public JavaMailSender emailSender;
-	@Autowired
-	private PasswordService passwordService;
 
 	public void sendSimpleMessage(String to, String subject, String text) {
 		System.out.println("Sending simple message " + to + " " + subject + " " + text);
@@ -48,16 +44,17 @@ public class EmailServiceImpl {
 		emailSender.send(mimeMessage);
 	}
 
-	public void sendReset(String to) {
+	public void sendReset(String to, String newPassword) {
 		System.out.println("Sending simple message " + to);
-		String newPass = passwordService.generatePassword();
+
 		MimeMessage mimeMessage = emailSender.createMimeMessage();
 
 		try {
 			MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, false, "utf-8");
 			String htmlMsg = "<p>Remembering your password can be hard, we get it. <br><br>"
 					+ "We created a new one for you so you can get back into your account. <br><br>"
-					+ "Your new password is: <strong>" + newPass + "</strong><br><br>Don't forget to change it!<p><br>"
+					+ "Your new password is: <strong>" + newPassword
+					+ "</strong><br><br>Don't forget to change it!<p><br>"
 					+ "<a href=\"http://localhost:8080/login\">Login</a>";
 			mimeMessage.setContent(htmlMsg, "text/html");
 			helper.setTo(to);
