@@ -9,7 +9,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.revature.projecttwo.container.beans.Resident;
+import com.revature.projecttwo.container.dtos.UserDto;
 import com.revature.projecttwo.container.repo.UserRepo;
+import com.revature.projecttwo.container.validation.UserValidService;
 
 @Service
 public class UserService {
@@ -20,6 +22,9 @@ public class UserService {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
+	@Autowired
+	private UserValidService userValidation;
+
 	public List<Resident> getAllUsers() {
 		System.out.println("Getting all users:\n\t");
 		List<Resident> users = new ArrayList<>();
@@ -29,13 +34,34 @@ public class UserService {
 		return users;
 	}
 
-	public List<Resident> getUsers(String firstName, String lastName) {
+	public List<UserDto> getUsers(String firstName, String lastName) {
 		System.out.println("Getting all users matching:\n\t" + firstName + " " + lastName);
-		List<Resident> users = new ArrayList<>();
+		List<UserDto> usersDtos = new ArrayList<>();
 		// method reference add method call
-		userRepo.getByFirstNameAndLastNameIgnoreCase(firstName, lastName).forEach(users::add);
+		List<Resident> users = userRepo.findByFirstNameAndLastNameIgnoreCase(firstName, lastName);
 
-		return users;
+		// turn into DTOs to restrict info returned
+		for (Resident u : users) {
+			usersDtos.add(new UserDto(u.getId(), u.getFirstName(), u.getLastName()));
+		}
+		return usersDtos;
+	}
+
+	public List<UserDto> getUsersDtosMatching(String name) {
+		System.out.println("Getting all users matching name:\n\t" + name);
+		List<UserDto> usersDtos = new ArrayList<>();
+
+		// regex it
+		name = '%' + name + '%';
+
+		List<Resident> users = userRepo.findByFirstNameLikeOrLastNameLikeIgnoreCase(name, name);
+
+		// turn into DTOs to restrict info returned
+		for (Resident u : users) {
+			usersDtos.add(new UserDto(u.getId(), u.getFirstName(), u.getLastName()));
+		}
+
+		return usersDtos;
 	}
 
 	public Resident getUser(Integer id) {
@@ -51,7 +77,7 @@ public class UserService {
 		Resident user = userRepo.getByEmail(email);
 
 		// check password encypt match
-		if (passwordEncoder.matches(password, user.getPassword())) {
+		if (user != null && passwordEncoder.matches(password, user.getPassword())) {
 			System.out.println("Password matches email");
 			return user;
 		} else {
@@ -70,14 +96,19 @@ public class UserService {
 		// throw new EmailExistsException("There is an account with that email adress:"
 		// + accountDto.getEmail());
 		// }
-		System.out.println("Saving User to DB:\n\t" + user);
+		if (userValidation.checkPassword(user.getPassword())) {
+			System.out.println("Saving User to DB:\n\t" + user);
 
-		// encode the user password before storing it into db
-		user.setPassword(passwordEncoder.encode(user.getPassword()));
+			// encode the user password before storing it into db
+			user.setPassword(passwordEncoder.encode(user.getPassword()));
 
-		System.out.println("Password Encryption = " + user.getPassword());
+			System.out.println("Password Encryption = " + user.getPassword());
 
-		return userRepo.save(user);
+			return userRepo.save(user);
+		} else {
+			System.out.println("No valid password found:\n\t" + user);
+			return null;
+		}
 	}
 
 	public void updateUser(Resident user) {

@@ -12,6 +12,8 @@ public interface UserRepo extends CrudRepository<Resident, Integer> {
 
 	Resident getByEmail(String email);
 
-	List<Resident> getByFirstNameAndLastNameIgnoreCase(String firstName, String lastName);
+	List<Resident> findByFirstNameAndLastNameIgnoreCase(String firstName, String lastName);
+
+	List<Resident> findByFirstNameLikeOrLastNameLikeIgnoreCase(String firstName, String lastName);
 
 }
