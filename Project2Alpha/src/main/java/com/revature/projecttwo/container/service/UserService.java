@@ -47,9 +47,17 @@ public class UserService {
 
 	public Resident getUser(String email, String password) {
 		System.out.println("Found User in DB:\n\t" + email + " " + password);
-		Resident user = userRepo.getByEmailAndPassword(email, password);
 
-		return user;
+		Resident user = userRepo.getByEmail(email);
+
+		// check password encypt match
+		if (passwordEncoder.matches(password, user.getPassword())) {
+			System.out.println("Password matches email");
+			return user;
+		} else {
+			System.out.println("Password does not match email");
+			return null;
+		}
 	}
 
 	public Resident getUser(String email) {
