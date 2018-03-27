@@ -220,4 +220,11 @@ public class UserService {
 		System.out.println("Deleting User to DB:+\n\t" + id);
 		userRepo.deleteById(id);
 	}
+	
+	public void updateUserImage(String path, int userId) {
+		System.out.println("Updating user picture in DB:+\n\t" + userId + " " + path);
+		Resident user = userRepo.getById(userId);
+		user.setProfileUrl(path);
+		userRepo.save(user);
+	}
 }

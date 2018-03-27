@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.revature.projecttwo.bucket.AmazonClient;
 import com.revature.projecttwo.container.beans.Comment;
 import com.revature.projecttwo.container.beans.Notification;
 import com.revature.projecttwo.container.beans.Post;
@@ -36,6 +38,8 @@ public class FrontController {
 	private NotificationService notificationService;
 	@Autowired
 	private EmailServiceImpl emailService;
+	@Autowired
+	private AmazonClient ac;
 
 	@RequestMapping(method = RequestMethod.POST, value = "/register")
 	public ResponseEntity<Boolean> register(@RequestBody Resident user) {
@@ -118,15 +122,23 @@ public class FrontController {
 		return ResponseEntity.ok(userService.updateUser(user, id));
 	}
 
-	@RequestMapping(method = RequestMethod.POST, value = "/profilePictures")
-	public ResponseEntity<Boolean> updateProfilePic(@RequestBody Resident user) {
-		System.out.println("Update Profile Pic:\n\t " + user.getProfileUrl());
+	@RequestMapping(method = RequestMethod.POST, value = "/profilePictures/{uid}")
+	public ResponseEntity<Boolean> updateProfilePic(@RequestBody MultipartFile multipartFile, @PathVariable int uid) {
+		System.out.println("Updating Profile Pic:\n\t ");
 
 		// TODO S3
+//		String filepath = "C:\\Users\\Joshua\\Pictures\\Memes\\testPic.png";
+
+		String url = ac.uploadFile(multipartFile);
+		userService.updateUserImage(url, uid);
+		System.out.println(url);
+
+		// TODO update user URL
 
 		// userService.updateUser(user);
 
 		return ResponseEntity.ok(true);
+
 	}
 
 	// content, imageUrl, youtubeUrl
