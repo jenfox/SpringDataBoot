@@ -108,7 +108,7 @@ public class FrontController {
 		return ResponseEntity.ok(users);
 	}
 
-	@RequestMapping(method = RequestMethod.POST, value = "/users")
+	@RequestMapping(method = RequestMethod.POST, value = "/users/{id}")
 	public ResponseEntity<Boolean> updateProfile(@RequestBody Resident user) {
 		System.out.println("Updating User:\n\t " + user);
 
