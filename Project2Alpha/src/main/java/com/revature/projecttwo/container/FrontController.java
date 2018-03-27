@@ -37,19 +37,19 @@ public class FrontController {
 	@Autowired
 	private EmailServiceImpl emailService;
 
-	// email, password
 	@RequestMapping(method = RequestMethod.POST, value = "/register")
 	public ResponseEntity<Boolean> register(@RequestBody Resident user) {
 		System.out.println("Registering User:\n\t " + user);
 
-		// TODO validation - i.e. all required user fields present
+		if (userService.registerNewUserAccount(user)) {
 
-		userService.registerNewUserAccount(user);
+			// Email Registered
+			emailService.sendRegister(user.getEmail(), user.getPassword());
 
-		// Email Registered
-		emailService.sendRegister(user.getEmail(), user.getPassword());
-
-		return ResponseEntity.ok(true);
+			return ResponseEntity.ok(true);
+		}
+		// unable to register user
+		return ResponseEntity.ok(false);
 	}
 
 	// email, password
@@ -116,15 +116,11 @@ public class FrontController {
 		return ResponseEntity.ok(users);
 	}
 
-	// first, last, dob, gender, phone
-	@RequestMapping(method = RequestMethod.POST, value = "/users")
-	public ResponseEntity<Boolean> updateProfile(@RequestBody Resident user) {
+	@RequestMapping(method = RequestMethod.POST, value = "/users/{id}")
+	public ResponseEntity<Resident> updateProfile(@PathVariable Integer id, @RequestBody Resident user) {
 		System.out.println("Updating User:\n\t " + user);
 
-		// TODO Validation
-		userService.updateUser(user);
-
-		return ResponseEntity.ok(true);
+		return ResponseEntity.ok(userService.updateUser(user, id));
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/profilePictures")
@@ -133,7 +129,7 @@ public class FrontController {
 
 		// TODO S3
 
-		userService.updateUser(user);
+		// userService.updateUser(user);
 
 		return ResponseEntity.ok(true);
 	}
