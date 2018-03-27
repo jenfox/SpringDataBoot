@@ -40,11 +40,12 @@ public class FrontController {
 	@RequestMapping(method = RequestMethod.POST, value = "/register")
 	public ResponseEntity<Boolean> register(@RequestBody Resident user) {
 		System.out.println("Registering User:\n\t " + user);
+		String plainTextPassword = user.getPassword();
 
 		if (userService.registerNewUserAccount(user)) {
 
 			// Email Registered
-			emailService.sendRegister(user.getEmail(), user.getPassword());
+			emailService.sendRegister(user.getEmail(), plainTextPassword);
 
 			return ResponseEntity.ok(true);
 		}
@@ -73,14 +74,8 @@ public class FrontController {
 
 		// validate email
 		Resident user = userService.getUser(userSkeleton.getEmail());
-		// no email exists -> return false
-		if (user == null) {
-			System.out.println("No matching Email");
-			return ResponseEntity.ok(false);
-		} else {
-			// send email to reset
-			emailService.sendReset(user.getEmail());
-		}
+
+		userService.resetPassword(user);
 
 		return ResponseEntity.ok(true);
 	}

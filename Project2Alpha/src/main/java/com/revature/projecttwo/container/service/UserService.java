@@ -12,6 +12,7 @@ import com.revature.projecttwo.container.beans.Resident;
 import com.revature.projecttwo.container.dtos.UserDto;
 import com.revature.projecttwo.container.repo.UserRepo;
 import com.revature.projecttwo.container.validation.UserValidService;
+import com.revature.projecttwo.email.EmailServiceImpl;
 
 @Service
 public class UserService {
@@ -22,6 +23,10 @@ public class UserService {
 	private PasswordEncoder passwordEncoder;
 	@Autowired
 	private UserValidService userValidation;
+	@Autowired
+	private EmailServiceImpl emailService;
+	@Autowired
+	private PasswordService passwordService;
 
 	public List<UserDto> getUsers(String firstName, String lastName) {
 		System.out.println("Getting all users matching:\n\t" + firstName + " " + lastName);
@@ -180,17 +185,35 @@ public class UserService {
 		return userFound;
 	}
 
-	public void updateUserPassword(Resident user) {
+	public boolean updateUserPassword(Resident user) {
 		// 1. check if password exists
 		if (!userValidation.checkUserHasPassword(user)) {
 			System.out.println("No User Password:\n\t" + user);
-			return;
+			return false;
 		}
 		// 2. Encrypt password
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 
 		// 3. Update Password
-		userRepo.save(user);
+		return userRepo.save(user) != null;
+	}
+
+	public boolean resetPassword(Resident user) {
+		if (!userValidation.checkUserHasEmail(user)) {
+			System.out.println("No User email\n\t" + user);
+			return false;
+		}
+		System.out.println("Resetting user password\n\t" + user);
+
+		// send email to reset
+		String newPass = passwordService.generatePassword();
+		emailService.sendReset(user.getEmail(), newPass);
+
+		// set user object to new password
+		user.setPassword(newPass);
+
+		return updateUserPassword(user);
+
 	}
 
 	public void deleteUser(Integer id) {
