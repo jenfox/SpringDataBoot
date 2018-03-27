@@ -62,7 +62,7 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<!-- Email Dependencies -->
 		<dependency>
 		    <groupId>org.springframework.boot</groupId>
@@ -83,12 +83,31 @@
 		    <scope>test</scope>
 		</dependency>
 		
+
+		<!-- S3 Buckets Dependencies -->
+		<dependency>
+		    <groupId>com.amazonaws</groupId>
+		    <artifactId>aws-java-sdk</artifactId>
+		    <version>1.11.301</version>
+		</dependency>
+		<dependency>
+		    <groupId>com.amazonaws</groupId>
+		    <artifactId>aws-java-sdk-s3</artifactId>
+		    <version>1.11.301</version>
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.skyscreamer/jsonassert -->
 		<dependency>
 		    <groupId>org.skyscreamer</groupId>
 		    <artifactId>jsonassert</artifactId>
-		    <version>1.5.0</version>
 		    <scope>test</scope>
+		</dependency>
+		
+	    <!-- Local Oracle Driver JDBC jar  -->
+	  	<dependency>
+		     <groupId>com.oracle.jdbc</groupId>
+		     <artifactId>objdbc8</artifactId>
+		     <version>12.2.0.1</version>
+
 		</dependency>
 		
 		

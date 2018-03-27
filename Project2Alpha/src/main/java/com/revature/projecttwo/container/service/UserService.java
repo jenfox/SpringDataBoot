@@ -9,59 +9,124 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.revature.projecttwo.container.beans.Resident;
+import com.revature.projecttwo.container.dtos.UserDto;
 import com.revature.projecttwo.container.repo.UserRepo;
+import com.revature.projecttwo.container.validation.UserValidService;
+import com.revature.projecttwo.email.EmailServiceImpl;
 
 @Service
 public class UserService {
 
 	@Autowired
 	private UserRepo userRepo;
-
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	@Autowired
+	private UserValidService userValidation;
+	@Autowired
+	private EmailServiceImpl emailService;
+	@Autowired
+	private PasswordService passwordService;
 
-	public List<Resident> getAllUsers() {
-		System.out.println("Getting all users:\n\t");
-		List<Resident> users = new ArrayList<>();
+	public List<UserDto> getUsers(String firstName, String lastName) {
+		System.out.println("Getting all users matching:\n\t" + firstName + " " + lastName);
+		List<UserDto> usersDtos = new ArrayList<>();
 		// method reference add method call
-		userRepo.findAll().forEach(users::add);
+		List<Resident> users = userRepo.findByFirstNameAndLastNameIgnoreCase(firstName, lastName);
 
-		return users;
+		// turn into DTOs to restrict info returned
+		for (Resident u : users) {
+			usersDtos.add(new UserDto(u.getId(), u.getFirstName(), u.getLastName()));
+		}
+		return usersDtos;
 	}
 
-	public List<Resident> getUsers(String firstName, String lastName) {
-		System.out.println("Getting all users matching:\n\t" + firstName + " " + lastName);
-		List<Resident> users = new ArrayList<>();
-		// method reference add method call
-		userRepo.getByFirstNameAndLastNameIgnoreCase(firstName, lastName).forEach(users::add);
+	public List<UserDto> getUsersDtosMatching(String name) {
+		System.out.println("Getting all users matching name:\n\t" + name);
+		List<UserDto> usersDtos = new ArrayList<>();
 
-		return users;
+		// regex it
+		name = '%' + name + '%';
+
+		List<Resident> users = userRepo.findByFirstNameLikeOrLastNameLikeIgnoreCase(name, name);
+
+		// turn into DTOs to restrict info returned
+		for (Resident u : users) {
+			usersDtos.add(new UserDto(u.getId(), u.getFirstName(), u.getLastName()));
+		}
+
+		return usersDtos;
 	}
 
 	public Resident getUser(Integer id) {
 		System.out.println("Found User in DB:\n\t" + id);
 		Optional<Resident> user = userRepo.findById(id);
 
-		return user.get();
+		Resident userObj = user.get();
+		userObj.setPassword("");
+
+		return userObj;
 	}
 
 	public Resident getUser(String email, String password) {
 		System.out.println("Found User in DB:\n\t" + email + " " + password);
-		Resident user = userRepo.getByEmailAndPassword(email, password);
+
+		Resident user = userRepo.getByEmail(email);
+
+		// check password encypt match
+		if (user != null && passwordEncoder.matches(password, user.getPassword())) {
+			System.out.println("Password matches email");
+
+			// remove password field
+			user.setPassword("");
+
+			return user;
+		} else {
+			System.out.println("Password does not match email");
+			return null;
+		}
+	}
+
+	/**
+	 * Gets user by email
+	 * 
+	 * @param email
+	 * @return
+	 */
+	public Resident getUser(String email) {
+		// 1. check if email is empty
+		if (email == null || email.isEmpty()) {
+			System.out.println("Email is Empty:\n\t" + email);
+			return null;
+		}
+
+		Resident user = userRepo.getByEmail(email);
+
+		System.out.println("Found User in DB:\n\t" + email);
 
 		return user;
+
 	}
 
-	public Resident getUser(String email) {
-		System.out.println("Found User in DB:\n\t" + email);
-		return userRepo.getByEmail(email);
-	}
+	/**
+	 * Saves a new user account to database
+	 * 
+	 * @param user
+	 * @return
+	 */
+	public boolean registerNewUserAccount(Resident user) {
+		// 1. check user obj exists and has required fields
+		if (!userValidation.checkUserHasEmailPassword(user)) {
+			System.out.println("User field(s) empty\n\t" + user.getEmail());
+			return false;
+		}
 
-	public Resident registerNewUserAccount(Resident user) {// throws EmailExistsException {
-		// if (emailExist(accountDto.getEmail())) {
-		// throw new EmailExistsException("There is an account with that email adress:"
-		// + accountDto.getEmail());
-		// }
+		// 2. check email unique
+		if (!userValidation.checkEmailUnique(user.getEmail())) {
+			System.out.println("Email already taken\n\t" + user.getEmail());
+			return false;
+		}
+
 		System.out.println("Saving User to DB:\n\t" + user);
 
 		// encode the user password before storing it into db
@@ -69,20 +134,111 @@ public class UserService {
 
 		System.out.println("Password Encryption = " + user.getPassword());
 
-		return userRepo.save(user);
+		return userRepo.save(user) != null;
+
 	}
 
-	public void updateUser(Resident user) {
-		System.out.println("Updating User in DB:\n\t" + user);
+	/**
+	 * Updates any information passed for user
+	 * 
+	 * @param user
+	 */
+	public Resident updateUser(Resident user, int id) {
 
-		// check if password changed? and reencode
-		// TODO
-		// user.setPassword(passwordEncoder.encode(user.getPassword()));
-		userRepo.save(user);
+		// 1. check user with ID exists
+		Resident userFound = userRepo.getById(id);
+
+		if (userFound == null) {
+			System.out.println("No user with id exists:\n\t" + id);
+			return null;
+		}
+		// 1.5 check if there is anything to update
+		if (user == null) {
+			System.out.println("No fields to update:\n\t" + user);
+			userFound.setPassword("");
+			return userFound;
+		}
+
+		System.out.println("Updating User\n\t" + user + "\nin DB with:\n\t" + userFound);
+
+		// 2. Set any changed fields in user db obj
+		// first, last, dob, gender, phone
+		if (user.getFirstName() != null) {
+			userFound.setFirstName(user.getFirstName());
+		}
+		if (user.getLastName() != null) {
+			userFound.setLastName(user.getLastName());
+		}
+		if (user.getDob() != null) {
+			userFound.setDob(user.getDob());
+		}
+		if (user.getGender() != null) {
+			userFound.setGender(user.getGender());
+		}
+		if (user.getPhoneNumber() != null) {
+			userFound.setPhoneNumber(user.getPhoneNumber());
+		}
+
+		userFound = userRepo.save(userFound);
+
+		userFound.setPassword("");
+		return userFound;
+	}
+
+	public boolean updateUserPassword(Resident user) {
+		// 1. check if password exists
+		if (!userValidation.checkUserHasPassword(user)) {
+			System.out.println("No User Password:\n\t" + user);
+			return false;
+		}
+		// 2. Encrypt password
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
+
+		// 3. Update Password
+		return userRepo.save(user) != null;
+	}
+
+	public boolean resetPassword(Resident user) {
+		if (!userValidation.checkUserHasEmail(user)) {
+			System.out.println("No User email\n\t" + user);
+			return false;
+		}
+		System.out.println("Resetting user password\n\t" + user);
+
+		// send email to reset
+		String newPass = passwordService.generatePassword();
+		emailService.sendReset(user.getEmail(), newPass);
+
+		// set user object to new password
+		user.setPassword(newPass);
+
+		return updateUserPassword(user);
+
+	}
+
+	public boolean changePassword(Resident user) {
+
+		if (!userValidation.checkUserHasEmail(user)) {
+			System.out.println("No User email\n\t" + user);
+			return false;
+		}
+		Resident userFound = userRepo.getByEmail(user.getEmail());
+		System.out.println("Changing user password\n\t" + user.getPassword());
+		userFound.setPassword(user.getPassword());
+
+		return updateUserPassword(userFound);
+
 	}
 
 	public void deleteUser(Integer id) {
 		System.out.println("Deleting User to DB:+\n\t" + id);
 		userRepo.deleteById(id);
+	}
+
+	public void updateUserImage(String path, int userId) {
+		System.out.println("Updating user picture in DB:+\n\t" + userId + " " + path);
+		Resident user = userRepo.getById(userId);
+		user.setProfileUrl(path);
+		userRepo.save(user);
 	}
 }
