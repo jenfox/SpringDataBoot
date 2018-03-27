@@ -17,7 +17,6 @@ import com.revature.projecttwo.container.beans.Post;
 import com.revature.projecttwo.container.beans.Resident;
 import com.revature.projecttwo.container.service.CommentService;
 import com.revature.projecttwo.container.service.NotificationService;
-import com.revature.projecttwo.container.service.PasswordService;
 import com.revature.projecttwo.container.service.PostService;
 import com.revature.projecttwo.container.service.UserService;
 import com.revature.projecttwo.email.EmailServiceImpl;
@@ -36,8 +35,6 @@ public class FrontController {
 	private NotificationService notificationService;
 	@Autowired
 	private EmailServiceImpl emailService;
-	@Autowired
-	private PasswordService passwordService;
 
 	@RequestMapping(method = RequestMethod.POST, value = "/register")
 	public ResponseEntity<Boolean> register(@RequestBody Resident user) {
@@ -47,8 +44,8 @@ public class FrontController {
 
 		userService.addUser(user);
 
-		// Email
-		emailService.sendSimpleMessage(user.getEmail(), "Register", "Hi, welcome to our social site test");
+		// Email Registered
+		emailService.sendRegister(user.getEmail(), user.getPassword());
 
 		return ResponseEntity.ok(true);
 	}
@@ -70,20 +67,18 @@ public class FrontController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/reset")
-	public ResponseEntity<Boolean> resetPassword(@RequestBody String email) {
-		System.out.println("Reset Password:\n\t " + email);
+	public ResponseEntity<Boolean> resetPassword(@RequestBody Resident userSkeleton) {
+		System.out.println("Reset Password:\n\t " + userSkeleton.getEmail());
 
 		// validate email
-		Resident user = userService.getUser(email);
+		Resident user = userService.getUser(userSkeleton.getEmail());
 		// no email exists -> return false
 		if (user == null) {
 			System.out.println("No matching Email");
 			return ResponseEntity.ok(false);
 		} else {
-			// generate password
-			String password = passwordService.generatePassword();
 			// send email to reset
-			emailService.sendSimpleMessage(email, "Password Reset", "Hi, your new password is " + password);
+			emailService.sendReset(user.getEmail());
 		}
 
 		return ResponseEntity.ok(true);
