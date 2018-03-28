@@ -107,7 +107,18 @@
 		     <groupId>com.oracle.jdbc</groupId>
 		     <artifactId>objdbc8</artifactId>
 		     <version>12.2.0.1</version>
-
+		</dependency>
+		
+		<!-- Swagger Dep -->
+		<dependency>
+		    <groupId>io.springfox</groupId>
+		    <artifactId>springfox-swagger2</artifactId>
+		    <version>2.7.0</version>
+		</dependency>
+		<dependency>
+		    <groupId>io.springfox</groupId>
+		    <artifactId>springfox-swagger-ui</artifactId>
+		    <version>2.7.0</version>
 		</dependency>
 		
 		
