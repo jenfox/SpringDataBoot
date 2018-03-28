@@ -19,6 +19,5 @@ public class Project2AlphaApplicationTests {
 	private TestEntityManager entityManager;
 
 	
-	}
 
 }

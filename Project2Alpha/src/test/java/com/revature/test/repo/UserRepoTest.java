@@ -17,6 +17,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertNotNull;
 import static org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace.NONE;
 
+import java.util.List;
+
 @RunWith(SpringRunner.class)
 @DataJpaTest
 @ContextConfiguration
@@ -63,6 +65,45 @@ public class UserRepoTest {
 
 		// then
 		assertThat(testUser).isEqualTo(usr);
+	}
+	
+	@Test
+	public void whenGetById()
+	{
+		// given
+		Resident usr = new Resident();
+		usr.setId(1);
+		entityManager.persist(usr);
+		entityManager.flush();
+
+		// when
+		Resident testUser = usrRep.getById(usr.getId());
+
+		// then
+		assertThat(testUser).isEqualTo(usr);
+	}
+	
+	@Test
+	public void whenFindByFirstNameAndLastNameIgnoreCase()
+	{
+		// given
+		Resident usr = new Resident();
+		usr.setFirstName("Testy");
+		usr.setLastName("McTesterson");
+		entityManager.persist(usr);
+		entityManager.flush();
+
+		// when
+		Resident testUser = (Resident) usrRep.findByFirstNameAndLastNameIgnoreCase(usr.getFirstName(), usr.getLastName());
+
+		// then
+		assertThat(testUser).isEqualTo(usr);
+	}
+
+	@Test
+	public void findByFirstNameLikeOrLastNameLikeIgnoreCase()
+	{
+		
 	}
 
 }
