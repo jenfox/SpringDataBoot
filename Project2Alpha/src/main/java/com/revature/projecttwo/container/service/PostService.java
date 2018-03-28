@@ -51,6 +51,10 @@ public class PostService {
 		return post.get();
 	}
 
+	public List<Post> getPostByAuthorId(Integer authorId) {
+		return postRepo.findByAuthorId(authorId);
+	}
+
 	public void addPost(Post post) {
 		System.out.println("Saving Post to DB:\n\t" + post);
 		postRepo.save(post);
@@ -69,6 +73,13 @@ public class PostService {
 	public void likePost(Integer postId, Integer userId) {
 		System.out.println("Likeing Post to DB:+\n\t" + postId + " from user " + userId);
 		Post post = postRepo.findById(postId).get();
+
+		if (post == null) {
+			System.out.println("No valid post to like" + postId);
+			return;
+		}
+		if (post.getLikes() == null)
+			post.setLikes(new Integer[] {});
 
 		List<Integer> likes = new ArrayList<>(Arrays.asList(post.getLikes()));
 

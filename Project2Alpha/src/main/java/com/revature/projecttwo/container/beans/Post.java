@@ -1,14 +1,17 @@
 package com.revature.projecttwo.container.beans;
 
-import java.sql.Date;
-import java.util.Calendar;
+import java.util.Arrays;
+import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -32,10 +35,18 @@ public class Post {
 
 	private String imageUrl;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	private Resident author;
 
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "dateCreated", nullable = false)
 	private Date dateCreated;
+
+	// assign date on create
+	@PrePersist
+	protected void onCreate() {
+		dateCreated = new Date();
+	}
 
 	public Post() {
 
@@ -49,8 +60,6 @@ public class Post {
 		this.youtubeUrl = youtubeUrl;
 		this.imageUrl = imageUrl;
 		this.author = author;
-		// on creation set date
-		this.dateCreated = new java.sql.Date(Calendar.getInstance().getTime().getTime());
 	}
 
 	public int getId() {
@@ -97,6 +106,10 @@ public class Post {
 		return author;
 	}
 
+	public void setAuthor(Resident author) {
+		this.author = author;
+	}
+
 	public Date getDateCreated() {
 		return dateCreated;
 	}
@@ -105,8 +118,10 @@ public class Post {
 		this.dateCreated = dateCreated;
 	}
 
-	public void setAuthor(Resident author) {
-		this.author = author;
+	@Override
+	public String toString() {
+		return "Post [id=" + id + ", likes=" + Arrays.toString(likes) + ", content=" + content + ", youtubeUrl="
+				+ youtubeUrl + ", imageUrl=" + imageUrl + ", author=" + author + ", dateCreated=" + dateCreated + "]";
 	}
 
 }

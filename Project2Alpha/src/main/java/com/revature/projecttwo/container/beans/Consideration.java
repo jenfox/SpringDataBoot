@@ -5,11 +5,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Entity
-public class Comment {
+public class Consideration {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,23 +18,19 @@ public class Comment {
 	private Resident author;
 
 	@ManyToOne
-	private Resident recevier;
-
-	@NotBlank
-	private int postId;
+	private Post post;
 
 	@Size(max = 500)
 	private String content;
 
-	public Comment() {
+	public Consideration() {
 	}
 
-	public Comment(int id, Resident author, Resident receiever, int postId, String content) {
+	public Consideration(int id, Resident author, Post post, String content) {
 		super();
 		this.id = id;
 		this.author = author;
-		this.recevier = receiever;
-		this.postId = postId;
+		this.post = post;
 		this.content = content;
 	}
 
@@ -55,20 +50,12 @@ public class Comment {
 		this.author = authorId;
 	}
 
-	public Resident getReceiverId() {
-		return recevier;
+	public Post getPost() {
+		return post;
 	}
 
-	public void setReceiver(Resident receiverId) {
-		this.recevier = receiverId;
-	}
-
-	public int getPostId() {
-		return postId;
-	}
-
-	public void setPostId(int postId) {
-		this.postId = postId;
+	public void setPost(Post post) {
+		this.post = post;
 	}
 
 	public String getContent() {
@@ -81,8 +68,7 @@ public class Comment {
 
 	@Override
 	public String toString() {
-		return "Comment [id=" + id + ", author=" + author + ", receiver=" + recevier + ", postId=" + postId
-				+ ", content=" + content + "]";
+		return "Comment [id=" + id + ", author=" + author + ", post=" + post + ", content=" + content + "]";
 	}
 
 }

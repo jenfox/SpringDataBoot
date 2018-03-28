@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.revature.projecttwo.bucket.AmazonClient;
-import com.revature.projecttwo.container.beans.Comment;
+import com.revature.projecttwo.container.beans.Consideration;
 import com.revature.projecttwo.container.beans.Notification;
 import com.revature.projecttwo.container.beans.Post;
 import com.revature.projecttwo.container.beans.Resident;
@@ -194,19 +194,17 @@ public class FrontController {
 
 	// int
 	@RequestMapping(method = RequestMethod.POST, value = "/likes/{postId}")
-	public ResponseEntity<Boolean> likePost(@PathVariable Integer postId) {
+	public ResponseEntity<Boolean> likePost(@PathVariable Integer postId, @RequestBody Resident userSkeleton) {
 		System.out.println("Like Post:\n\t " + postId);
 
-		// TODO get uid
-		int userId = 0;
-		postService.likePost(postId, userId);
+		postService.likePost(postId, userSkeleton.getId());
 
 		return ResponseEntity.ok(true);
 	}
 
 	// content, postId
 	@RequestMapping(method = RequestMethod.POST, value = "/comments")
-	public ResponseEntity<Boolean> comment(@RequestBody Comment comment) {
+	public ResponseEntity<Boolean> comment(@RequestBody Consideration comment) {
 		System.out.println("Commenting:\n\t " + comment);
 
 		commentService.addComment(comment);
@@ -215,10 +213,10 @@ public class FrontController {
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/comments")
-	public ResponseEntity<List<Comment>> getComments() {
+	public ResponseEntity<List<Consideration>> getComments() {
 		System.out.println("Getting comments:\n\t ");
 
-		List<Comment> comments = commentService.getAllComments();
+		List<Consideration> comments = commentService.getAllComments();
 
 		return ResponseEntity.ok(comments);
 	}

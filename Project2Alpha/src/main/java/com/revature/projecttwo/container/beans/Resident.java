@@ -1,14 +1,12 @@
 package com.revature.projecttwo.container.beans;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -44,13 +42,7 @@ public class Resident {
 	private Date dob;
 
 	@Column(unique = true)
-	private String profileUrl;
-
-	@OneToMany
-	private List<Post> posts;
-
-	@OneToMany
-	private List<Notification> notifications;
+	private String profilePicUrl;
 
 	public Resident() {
 
@@ -67,7 +59,7 @@ public class Resident {
 		this.gender = genderId;
 		this.phoneNumber = phoneNumber;
 		this.dob = dob;
-		this.profileUrl = profileUrl;
+		this.profilePicUrl = profileUrl;
 	}
 
 	public Integer getId() {
@@ -135,18 +127,18 @@ public class Resident {
 	}
 
 	public String getProfileUrl() {
-		return profileUrl;
+		return profilePicUrl;
 	}
 
 	public void setProfileUrl(String profileUrl) {
-		this.profileUrl = profileUrl;
+		this.profilePicUrl = profileUrl;
 	}
 
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName
 				+ ", genderId=" + gender + ", phoneNumber=" + phoneNumber + ", dob=" + dob + ", profileUrl="
-				+ profileUrl + "]";
+				+ profilePicUrl + "]";
 	}
 
 }
