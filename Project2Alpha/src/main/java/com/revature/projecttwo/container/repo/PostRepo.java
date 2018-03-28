@@ -12,4 +12,6 @@ public interface PostRepo extends CrudRepository<Post, Integer> {
 
 	// List<Post> findTop20ByGreaterThanDateCreatedOrderByDateCreated(Date
 	// datecreated);
+
+	List<Post> findByAuthorId(Integer authorId);
 }

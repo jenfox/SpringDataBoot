@@ -7,7 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.revature.projecttwo.container.beans.Comment;
+import com.revature.projecttwo.container.beans.Consideration;
 import com.revature.projecttwo.container.repo.CommentRepo;
 
 @Service
@@ -16,28 +16,28 @@ public class CommentService {
 	@Autowired
 	private CommentRepo commentRepo;
 
-	public List<Comment> getAllComments() {
+	public List<Consideration> getAllComments() {
 		System.out.println("Getting all comments:\n\t");
-		List<Comment> comments = new ArrayList<>();
+		List<Consideration> comments = new ArrayList<>();
 		// method reference add method call
 		commentRepo.findAll().forEach(comments::add);
 
 		return comments;
 	}
 
-	public Comment getComment(Integer id) {
+	public Consideration getComment(Integer id) {
 		System.out.println("Found Comment in DB:\n\t" + id);
-		Optional<Comment> comment = commentRepo.findById(id);
+		Optional<Consideration> comment = commentRepo.findById(id);
 
 		return comment.get();
 	}
 
-	public void addComment(Comment comment) {
+	public void addComment(Consideration comment) {
 		System.out.println("Saving Comment to DB:\n\t" + comment);
 		commentRepo.save(comment);
 	}
 
-	public void deleteComment(Comment comment, String id) {
+	public void deleteComment(Consideration comment, String id) {
 		System.out.println("Updating Comment to DB:\n\t" + comment);
 		commentRepo.save(comment);
 	}

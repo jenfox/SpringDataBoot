@@ -1,10 +1,16 @@
 package com.revature.projecttwo.container.beans;
 
+import java.util.Date;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -21,6 +27,16 @@ public class Notification {
 	private String content;
 
 	private String url;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "dateCreated", nullable = false)
+	private Date dateCreated;
+
+	// assign date on create
+	@PrePersist
+	protected void onCreate() {
+		dateCreated = new Date();
+	}
 
 	public Notification() {
 
@@ -64,6 +80,14 @@ public class Notification {
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	public Date getDateCreated() {
+		return dateCreated;
+	}
+
+	public void setDateCreated(Date dateCreated) {
+		this.dateCreated = dateCreated;
 	}
 
 	@Override
