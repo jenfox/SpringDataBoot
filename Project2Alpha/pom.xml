@@ -6,7 +6,7 @@
 	<groupId>com.revature</groupId>
 	<artifactId>Project2Alpha</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>Project2Alpha</name>
 	<description>Demo project for Spring Data</description>
