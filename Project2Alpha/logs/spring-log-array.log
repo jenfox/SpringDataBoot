@@ -187,3 +187,287 @@
 	 13
 [INFO ] 2018-03-29 13:36:07.810 [http-nio-8080-exec-7] PostService - Getting posts:
 	13
+[INFO ] 2018-03-29 13:37:24.934 [http-nio-8080-exec-2] FrontController - Getting Feed:
+	 
+[INFO ] 2018-03-29 13:37:24.934 [http-nio-8080-exec-2] PostService - Getting last 20 posts:
+	
+[INFO ] 2018-03-29 13:37:31.638 [http-nio-8080-exec-9] FrontController - Getting Feed:
+	 
+[INFO ] 2018-03-29 13:37:31.638 [http-nio-8080-exec-9] PostService - Getting last 20 posts:
+	
+[INFO ] 2018-03-29 13:37:53.012 [http-nio-8080-exec-7] FrontController - Getting Feed:
+	 
+[INFO ] 2018-03-29 13:37:53.012 [http-nio-8080-exec-7] PostService - Getting last 20 posts:
+	
+[INFO ] 2018-03-29 13:38:07.229 [http-nio-8080-exec-8] FrontController - Getting Feed:
+	 
+[INFO ] 2018-03-29 13:38:07.229 [http-nio-8080-exec-8] PostService - Getting last 20 posts:
+	
+[INFO ] 2018-03-29 13:38:23.447 [http-nio-8080-exec-3] FrontController - Finding users matching:
+	 n
+[INFO ] 2018-03-29 13:38:23.448 [http-nio-8080-exec-3] UserService - Getting all users matching name:
+	n
+[INFO ] 2018-03-29 13:38:25.517 [http-nio-8080-exec-4] FrontController - Getting user profile:
+	 13
+[INFO ] 2018-03-29 13:38:25.517 [http-nio-8080-exec-4] UserService - Found User in DB:
+	13
+[INFO ] 2018-03-29 13:38:37.451 [http-nio-8080-exec-6] FrontController - Getting user profile:
+	 13
+[INFO ] 2018-03-29 13:38:37.451 [http-nio-8080-exec-6] UserService - Found User in DB:
+	13
+[INFO ] 2018-03-29 13:39:48.532 [http-nio-8080-exec-2] FrontController - Getting user profile:
+	 13
+[INFO ] 2018-03-29 13:39:48.532 [http-nio-8080-exec-2] UserService - Found User in DB:
+	13
+[INFO ] 2018-03-29 13:39:55.994 [http-nio-8080-exec-9] FrontController - Getting user profile:
+	 13
+[INFO ] 2018-03-29 13:39:55.994 [http-nio-8080-exec-9] UserService - Found User in DB:
+	13
+[INFO ] 2018-03-29 13:40:22.052 [http-nio-8080-exec-7] FrontController - Getting user profile:
+	 13
+[INFO ] 2018-03-29 13:40:22.052 [http-nio-8080-exec-7] UserService - Found User in DB:
+	13
+[INFO ] 2018-03-29 13:40:36.898 [http-nio-8080-exec-8] FrontController - Getting user profile:
+	 13
+[INFO ] 2018-03-29 13:40:36.898 [http-nio-8080-exec-8] UserService - Found User in DB:
+	13
+[INFO ] 2018-03-29 13:40:40.400 [http-nio-8080-exec-5] FrontController - Getting user profile:
+	 13
+[INFO ] 2018-03-29 13:40:40.400 [http-nio-8080-exec-5] UserService - Found User in DB:
+	13
+[INFO ] 2018-03-29 13:40:54.850 [http-nio-8080-exec-3] FrontController - Getting user profile:
+	 13
+[INFO ] 2018-03-29 13:40:54.851 [http-nio-8080-exec-3] UserService - Found User in DB:
+	13
+[INFO ] 2018-03-29 13:41:01.084 [http-nio-8080-exec-10] FrontController - Getting user profile:
+	 13
+[INFO ] 2018-03-29 13:41:01.084 [http-nio-8080-exec-10] UserService - Found User in DB:
+	13
+[INFO ] 2018-03-29 13:41:03.100 [http-nio-8080-exec-4] FrontController - Getting user profile:
+	 13
+[INFO ] 2018-03-29 13:41:03.100 [http-nio-8080-exec-4] UserService - Found User in DB:
+	13
+[INFO ] 2018-03-29 13:41:58.905 [http-nio-8080-exec-6] FrontController - Getting user profile:
+	 13
+[INFO ] 2018-03-29 13:41:58.905 [http-nio-8080-exec-6] UserService - Found User in DB:
+	13
+[INFO ] 2018-03-29 13:42:01.156 [http-nio-8080-exec-1] FrontController - Getting user profile:
+	 13
+[INFO ] 2018-03-29 13:42:01.156 [http-nio-8080-exec-1] UserService - Found User in DB:
+	13
+[INFO ] 2018-03-29 13:42:03.733 [http-nio-8080-exec-2] FrontController - Getting user profile:
+	 13
+[INFO ] 2018-03-29 13:42:03.733 [http-nio-8080-exec-2] UserService - Found User in DB:
+	13
+[INFO ] 2018-03-29 13:42:17.352 [http-nio-8080-exec-9] FrontController - Getting user profile:
+	 13
+[INFO ] 2018-03-29 13:42:17.352 [http-nio-8080-exec-9] UserService - Found User in DB:
+	13
+[INFO ] 2018-03-29 13:42:23.028 [http-nio-8080-exec-7] FrontController - Getting user profile:
+	 13
+[INFO ] 2018-03-29 13:42:23.029 [http-nio-8080-exec-7] UserService - Found User in DB:
+	13
+[INFO ] 2018-03-29 13:43:03.154 [http-nio-8080-exec-8] FrontController - Getting user profile:
+	 13
+[INFO ] 2018-03-29 13:43:03.154 [http-nio-8080-exec-8] UserService - Found User in DB:
+	13
+[INFO ] 2018-03-29 13:43:07.125 [http-nio-8080-exec-5] FrontController - Getting user profile:
+	 13
+[INFO ] 2018-03-29 13:43:07.125 [http-nio-8080-exec-5] UserService - Found User in DB:
+	13
+[INFO ] 2018-03-29 13:43:09.135 [http-nio-8080-exec-3] FrontController - Getting user profile:
+	 13
+[INFO ] 2018-03-29 13:43:09.136 [http-nio-8080-exec-3] UserService - Found User in DB:
+	13
+[INFO ] 2018-03-29 13:43:14.114 [http-nio-8080-exec-10] FrontController - Getting user profile:
+	 13
+[INFO ] 2018-03-29 13:43:14.114 [http-nio-8080-exec-10] UserService - Found User in DB:
+	13
+[INFO ] 2018-03-29 13:43:15.813 [http-nio-8080-exec-4] FrontController - Getting user profile:
+	 13
+[INFO ] 2018-03-29 13:43:15.813 [http-nio-8080-exec-4] UserService - Found User in DB:
+	13
+[INFO ] 2018-03-29 13:43:24.833 [http-nio-8080-exec-6] FrontController - Getting user profile:
+	 13
+[INFO ] 2018-03-29 13:43:24.833 [http-nio-8080-exec-6] UserService - Found User in DB:
+	13
+[INFO ] 2018-03-29 13:43:27.086 [http-nio-8080-exec-1] FrontController - Getting user profile:
+	 13
+[INFO ] 2018-03-29 13:43:27.086 [http-nio-8080-exec-1] UserService - Found User in DB:
+	13
+[INFO ] 2018-03-29 13:43:29.657 [http-nio-8080-exec-2] FrontController - Getting user profile:
+	 13
+[INFO ] 2018-03-29 13:43:29.657 [http-nio-8080-exec-2] UserService - Found User in DB:
+	13
+[INFO ] 2018-03-29 13:43:31.552 [http-nio-8080-exec-9] FrontController - Getting user profile:
+	 13
+[INFO ] 2018-03-29 13:43:31.552 [http-nio-8080-exec-9] UserService - Found User in DB:
+	13
+[INFO ] 2018-03-29 13:43:51.424 [http-nio-8080-exec-7] FrontController - Getting user profile:
+	 13
+[INFO ] 2018-03-29 13:43:51.424 [http-nio-8080-exec-7] UserService - Found User in DB:
+	13
+[INFO ] 2018-03-29 13:43:59.082 [http-nio-8080-exec-8] FrontController - Getting user profile:
+	 13
+[INFO ] 2018-03-29 13:43:59.082 [http-nio-8080-exec-8] UserService - Found User in DB:
+	13
+[INFO ] 2018-03-29 13:44:03.242 [http-nio-8080-exec-5] FrontController - Getting user profile:
+	 13
+[INFO ] 2018-03-29 13:44:03.242 [http-nio-8080-exec-5] UserService - Found User in DB:
+	13
+[INFO ] 2018-03-29 13:44:05.406 [http-nio-8080-exec-3] FrontController - Getting user profile:
+	 13
+[INFO ] 2018-03-29 13:44:05.406 [http-nio-8080-exec-3] UserService - Found User in DB:
+	13
+[INFO ] 2018-03-29 13:44:05.422 [http-nio-8080-exec-4] FrontController - Getting Feed for user:
+	 13
+[INFO ] 2018-03-29 13:44:05.422 [http-nio-8080-exec-4] PostService - Getting posts:
+	13
+[INFO ] 2018-03-29 13:44:08.462 [http-nio-8080-exec-6] FrontController - Getting user profile:
+	 13
+[INFO ] 2018-03-29 13:44:08.462 [http-nio-8080-exec-6] UserService - Found User in DB:
+	13
+[INFO ] 2018-03-29 13:44:08.462 [http-nio-8080-exec-1] FrontController - Getting Feed for user:
+	 13
+[INFO ] 2018-03-29 13:44:08.463 [http-nio-8080-exec-1] PostService - Getting posts:
+	13
+[INFO ] 2018-03-29 13:44:10.346 [http-nio-8080-exec-2] FrontController - Getting user profile:
+	 13
+[INFO ] 2018-03-29 13:44:10.346 [http-nio-8080-exec-2] UserService - Found User in DB:
+	13
+[INFO ] 2018-03-29 13:44:10.346 [http-nio-8080-exec-9] FrontController - Getting Feed for user:
+	 13
+[INFO ] 2018-03-29 13:44:10.346 [http-nio-8080-exec-9] PostService - Getting posts:
+	13
+[INFO ] 2018-03-29 13:44:13.359 [http-nio-8080-exec-7] FrontController - Getting user profile:
+	 13
+[INFO ] 2018-03-29 13:44:13.360 [http-nio-8080-exec-7] UserService - Found User in DB:
+	13
+[INFO ] 2018-03-29 13:44:13.360 [http-nio-8080-exec-8] FrontController - Getting Feed for user:
+	 13
+[INFO ] 2018-03-29 13:44:13.361 [http-nio-8080-exec-8] PostService - Getting posts:
+	13
+[INFO ] 2018-03-29 13:44:15.993 [http-nio-8080-exec-5] FrontController - Getting user profile:
+	 13
+[INFO ] 2018-03-29 13:44:15.993 [http-nio-8080-exec-5] UserService - Found User in DB:
+	13
+[INFO ] 2018-03-29 13:44:20.112 [http-nio-8080-exec-10] FrontController - Getting user profile:
+	 13
+[INFO ] 2018-03-29 13:44:20.112 [http-nio-8080-exec-10] UserService - Found User in DB:
+	13
+[INFO ] 2018-03-29 13:44:20.113 [http-nio-8080-exec-3] FrontController - Getting Feed for user:
+	 13
+[INFO ] 2018-03-29 13:44:20.113 [http-nio-8080-exec-3] PostService - Getting posts:
+	13
+[INFO ] 2018-03-29 13:44:22.337 [http-nio-8080-exec-4] FrontController - Getting user profile:
+	 13
+[INFO ] 2018-03-29 13:44:22.338 [http-nio-8080-exec-4] UserService - Found User in DB:
+	13
+[INFO ] 2018-03-29 13:44:22.338 [http-nio-8080-exec-6] FrontController - Getting Feed for user:
+	 13
+[INFO ] 2018-03-29 13:44:22.338 [http-nio-8080-exec-6] PostService - Getting posts:
+	13
+[INFO ] 2018-03-29 13:44:30.663 [http-nio-8080-exec-2] FrontController - Getting Feed for user:
+	 13
+[INFO ] 2018-03-29 13:44:30.663 [http-nio-8080-exec-2] PostService - Getting posts:
+	13
+[INFO ] 2018-03-29 13:44:30.664 [http-nio-8080-exec-1] FrontController - Getting user profile:
+	 13
+[INFO ] 2018-03-29 13:44:30.664 [http-nio-8080-exec-1] UserService - Found User in DB:
+	13
+[INFO ] 2018-03-29 13:44:36.224 [http-nio-8080-exec-9] FrontController - Getting user profile:
+	 13
+[INFO ] 2018-03-29 13:44:36.224 [http-nio-8080-exec-9] UserService - Found User in DB:
+	13
+[INFO ] 2018-03-29 13:44:36.225 [http-nio-8080-exec-7] FrontController - Getting Feed for user:
+	 13
+[INFO ] 2018-03-29 13:44:36.225 [http-nio-8080-exec-7] PostService - Getting posts:
+	13
+[INFO ] 2018-03-29 13:44:41.616 [http-nio-8080-exec-5] FrontController - Getting Feed for user:
+	 13
+[INFO ] 2018-03-29 13:44:41.616 [http-nio-8080-exec-8] FrontController - Getting user profile:
+	 13
+[INFO ] 2018-03-29 13:44:41.616 [http-nio-8080-exec-5] PostService - Getting posts:
+	13
+[INFO ] 2018-03-29 13:44:41.616 [http-nio-8080-exec-8] UserService - Found User in DB:
+	13
+[INFO ] 2018-03-29 13:44:43.852 [http-nio-8080-exec-10] FrontController - Getting user profile:
+	 13
+[INFO ] 2018-03-29 13:44:43.853 [http-nio-8080-exec-10] UserService - Found User in DB:
+	13
+[INFO ] 2018-03-29 13:44:43.853 [http-nio-8080-exec-3] FrontController - Getting Feed for user:
+	 13
+[INFO ] 2018-03-29 13:44:43.853 [http-nio-8080-exec-3] PostService - Getting posts:
+	13
+[INFO ] 2018-03-29 13:44:45.446 [http-nio-8080-exec-4] FrontController - Getting user profile:
+	 13
+[INFO ] 2018-03-29 13:44:45.446 [http-nio-8080-exec-4] UserService - Found User in DB:
+	13
+[INFO ] 2018-03-29 13:44:45.446 [http-nio-8080-exec-6] FrontController - Getting Feed for user:
+	 13
+[INFO ] 2018-03-29 13:44:45.446 [http-nio-8080-exec-6] PostService - Getting posts:
+	13
+[INFO ] 2018-03-29 13:44:51.544 [http-nio-8080-exec-1] FrontController - Getting user profile:
+	 13
+[INFO ] 2018-03-29 13:44:51.544 [http-nio-8080-exec-1] UserService - Found User in DB:
+	13
+[INFO ] 2018-03-29 13:44:51.544 [http-nio-8080-exec-2] FrontController - Getting Feed for user:
+	 13
+[INFO ] 2018-03-29 13:44:51.544 [http-nio-8080-exec-2] PostService - Getting posts:
+	13
+[INFO ] 2018-03-29 13:44:53.513 [http-nio-8080-exec-9] FrontController - Getting user profile:
+	 13
+[INFO ] 2018-03-29 13:44:53.513 [http-nio-8080-exec-9] UserService - Found User in DB:
+	13
+[INFO ] 2018-03-29 13:44:53.514 [http-nio-8080-exec-7] FrontController - Getting Feed for user:
+	 13
+[INFO ] 2018-03-29 13:44:53.514 [http-nio-8080-exec-7] PostService - Getting posts:
+	13
+[INFO ] 2018-03-29 13:44:57.497 [http-nio-8080-exec-8] FrontController - Getting user profile:
+	 13
+[INFO ] 2018-03-29 13:44:57.497 [http-nio-8080-exec-8] UserService - Found User in DB:
+	13
+[INFO ] 2018-03-29 13:44:57.497 [http-nio-8080-exec-5] FrontController - Getting Feed for user:
+	 13
+[INFO ] 2018-03-29 13:44:57.497 [http-nio-8080-exec-5] PostService - Getting posts:
+	13
+[INFO ] 2018-03-29 13:47:03.946 [http-nio-8080-exec-4] FrontController - Getting user profile:
+	 13
+[INFO ] 2018-03-29 13:47:03.946 [http-nio-8080-exec-4] UserService - Found User in DB:
+	13
+[INFO ] 2018-03-29 13:47:03.946 [http-nio-8080-exec-6] FrontController - Getting Feed for user:
+	 13
+[INFO ] 2018-03-29 13:47:03.946 [http-nio-8080-exec-6] PostService - Getting posts:
+	13
+[INFO ] 2018-03-29 13:54:01.484 [http-nio-8080-exec-7] FrontController - Getting Feed for user:
+	 13
+[INFO ] 2018-03-29 13:54:01.484 [http-nio-8080-exec-7] PostService - Getting posts:
+	13
+[INFO ] 2018-03-29 13:54:01.507 [http-nio-8080-exec-8] FrontController - Getting user profile:
+	 13
+[INFO ] 2018-03-29 13:54:01.507 [http-nio-8080-exec-8] UserService - Found User in DB:
+	13
+[INFO ] 2018-03-29 13:54:24.303 [http-nio-8080-exec-5] FrontController - Getting user profile:
+	 13
+[INFO ] 2018-03-29 13:54:24.304 [http-nio-8080-exec-5] UserService - Found User in DB:
+	13
+[INFO ] 2018-03-29 13:54:24.330 [http-nio-8080-exec-3] FrontController - Getting Feed for user:
+	 13
+[INFO ] 2018-03-29 13:54:24.330 [http-nio-8080-exec-3] PostService - Getting posts:
+	13
+[INFO ] 2018-03-29 13:54:35.343 [http-nio-8080-exec-4] FrontController - Getting user profile:
+	 13
+[INFO ] 2018-03-29 13:54:35.343 [http-nio-8080-exec-4] UserService - Found User in DB:
+	13
+[INFO ] 2018-03-29 13:54:35.345 [http-nio-8080-exec-6] FrontController - Getting Feed for user:
+	 13
+[INFO ] 2018-03-29 13:54:35.345 [http-nio-8080-exec-6] PostService - Getting posts:
+	13
+[INFO ] 2018-03-29 13:54:42.043 [http-nio-8080-exec-1] FrontController - Getting user profile:
+	 13
+[INFO ] 2018-03-29 13:54:42.044 [http-nio-8080-exec-1] UserService - Found User in DB:
+	13
+[INFO ] 2018-03-29 13:54:42.044 [http-nio-8080-exec-2] FrontController - Getting Feed for user:
+	 13
+[INFO ] 2018-03-29 13:54:42.044 [http-nio-8080-exec-2] PostService - Getting posts:
+	13
