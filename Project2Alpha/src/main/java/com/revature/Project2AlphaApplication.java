@@ -1,13 +1,13 @@
 package com.revature;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class Project2AlphaApplication {
-	private static final Logger logger = LoggerFactory.getLogger(Project2AlphaApplication.class);
+	private static Logger logger = LogManager.getLogger();
 
 	public static void main(String[] args) {
 		logger.info("Started App");

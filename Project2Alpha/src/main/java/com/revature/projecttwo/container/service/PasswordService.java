@@ -2,10 +2,13 @@ package com.revature.projecttwo.container.service;
 
 import java.util.Random;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 @Service
 public class PasswordService {
+	private static Logger logger = LogManager.getLogger();
 
 	public String generatePassword() {
 		// How long we want the password to be
@@ -30,7 +33,7 @@ public class PasswordService {
 			password += values.charAt(rndm_method.nextInt(values.length()));
 
 		}
-		System.out.print("Your new password is : " + password);
+		logger.debug("Your new password is : " + password);
 
 		return password;
 	}

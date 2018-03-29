@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,7 @@ import com.revature.projecttwo.container.validation.PostValidService;
 
 @Service
 public class PostService {
+	private static Logger logger = LogManager.getLogger();
 
 	@Autowired
 	private PostRepo postRepo;
@@ -28,7 +31,7 @@ public class PostService {
 	 * @return
 	 */
 	public List<Post> getAllPosts() {
-		System.out.println("Getting all posts:\n\t");
+		logger.info("Getting all posts:\n\t");
 		List<Post> posts = new ArrayList<>();
 		// method reference add method call
 		postRepo.findAll().forEach(posts::add);
@@ -48,7 +51,7 @@ public class PostService {
 	 * @return
 	 */
 	public List<Post> getPrevious20Posts() {
-		System.out.println("Getting last 20 posts:\n\t");
+		logger.info("Getting last 20 posts:\n\t");
 		List<Post> posts = new ArrayList<>();
 		// method reference add method call
 		postRepo.findTop21ByOrderByDateCreatedDesc().forEach(posts::add);
@@ -63,7 +66,7 @@ public class PostService {
 	}
 	//
 	// public List<Post> getAllPostsPast(Date date) {
-	// System.out.println("Getting all posts past date:\n\t" + date);
+	// logger.info("Getting all posts past date:\n\t" + date);
 	// List<Post> posts = new ArrayList<>();
 	// // method reference add method call
 	// postRepo.findTop20ByGreaterThanDateCreatedOrderByDateCreated(date).forEach(posts::add);
@@ -78,7 +81,7 @@ public class PostService {
 	 * @return
 	 */
 	public Post getPost(Integer id) {
-		System.out.println("Found Post in DB:\n\t" + id);
+		logger.info("Found Post in DB:\n\t" + id);
 		Optional<Post> post = postRepo.findById(id);
 		Post postFound = post.get();
 
@@ -92,12 +95,12 @@ public class PostService {
 	public List<Post> getPostByAuthorId(Integer authorId) {
 		// 1. check if author exists
 		if (userService.getUser(authorId) == null) {
-			System.out.println("Author ID set in post DNE:\n\t");
+			logger.error("Author ID set in post DNE:\n\t");
 			return null;
 		}
 
 		// 2. Get the posts
-		System.out.println("Getting last 20 posts:\n\t");
+		logger.info("Getting last 20 posts:\n\t");
 		List<Post> posts = new ArrayList<>();
 		// method reference add method call
 		postRepo.findByAuthorId(authorId).forEach(posts::add);
@@ -114,11 +117,11 @@ public class PostService {
 	public boolean addPost(Post post) {
 		// 1. Check if post has valid fields
 		if (!postValidator.checkPostContentAndAuthor(post)) {
-			System.out.println("Unable to save post to DB:\n\t" + post);
+			logger.error("Unable to save post to DB:\n\t" + post);
 			return false;
 		}
 
-		System.out.println("Saving Post to DB:\n\t" + post);
+		logger.info("Saving Post to DB:\n\t" + post);
 
 		return postRepo.save(post) != null;
 	}
@@ -126,11 +129,11 @@ public class PostService {
 	public boolean updatePost(Post post, String id) {
 		// 1. Check if post has valid fields
 		if (!postValidator.checkPostContentAndAuthor(post)) {
-			System.out.println("Unable to save post to DB:\n\t" + post);
+			logger.error("Unable to save post to DB:\n\t" + post);
 			return false;
 		}
 
-		System.out.println("Updating Post to DB:\n\t" + post);
+		logger.info("Updating Post to DB:\n\t" + post);
 		return postRepo.save(post) != null;
 	}
 
@@ -138,7 +141,7 @@ public class PostService {
 
 		// 1. check if userId exists
 		if (userService.getUser(userId) == null) {
-			System.out.println("User ID liking post DNE:\n\t");
+			logger.error("User ID liking post DNE:\n\t");
 			return false;
 		}
 
@@ -146,13 +149,13 @@ public class PostService {
 		Post post = postRepo.findById(postId).get();
 
 		if (post == null) {
-			System.out.println("No valid post to like\n\t" + postId);
+			logger.error("No valid post to like\n\t" + postId);
 			return false;
 		}
 		if (post.getLikes() == null)
 			post.setLikes(new Integer[] {});
 
-		System.out.println("Likeing Post to DB:+\n\t" + postId + " from user\n\t" + userId);
+		logger.info("Likeing Post to DB:+\n\t" + postId + " from user\n\t" + userId);
 
 		// change Like array to include new UID
 		List<Integer> likes = new ArrayList<>(Arrays.asList(post.getLikes()));
@@ -166,7 +169,7 @@ public class PostService {
 	}
 
 	public void deletePost(Integer id) {
-		System.out.println("Deleting Post to DB:+\n\t" + id);
+		logger.info("Deleting Post to DB:+\n\t" + id);
 		postRepo.deleteById(id);
 	}
 

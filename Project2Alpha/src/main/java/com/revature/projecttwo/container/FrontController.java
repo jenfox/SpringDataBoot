@@ -2,6 +2,8 @@ package com.revature.projecttwo.container;
 
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -27,6 +29,7 @@ import com.revature.projecttwo.email.EmailServiceImpl;
 @CrossOrigin
 @RestController
 public class FrontController {
+	private static Logger logger = LogManager.getLogger();
 
 	@Autowired
 	private UserService userService;
@@ -43,7 +46,7 @@ public class FrontController {
 
 	@RequestMapping(method = RequestMethod.POST, value = "/register")
 	public ResponseEntity<Boolean> register(@RequestBody Resident user) {
-		System.out.println("Registering User:\n\t " + user);
+		logger.info("Registering User:\n\t " + user);
 		String plainTextPassword = user.getPassword();
 
 		if (userService.registerNewUserAccount(user)) {
@@ -60,11 +63,11 @@ public class FrontController {
 	// email, password
 	@RequestMapping(method = RequestMethod.POST, value = "/login")
 	public ResponseEntity<Resident> login(@RequestBody Resident user) {
-		System.out.println("Logging in User:\n\t " + user);
+		logger.info("Logging in User:\n\t " + user);
 
 		Resident userFound = userService.getUser(user.getEmail(), user.getPassword());
 		if (userFound == null) {
-			System.out.println("No user Found with email password combination");
+			logger.warn("No user Found with email password combination");
 			return ResponseEntity.ok(null);
 
 		}
@@ -74,7 +77,7 @@ public class FrontController {
 	// email
 	@RequestMapping(method = RequestMethod.POST, value = "/reset")
 	public ResponseEntity<Boolean> resetPassword(@RequestBody Resident userSkeleton) {
-		System.out.println("Reset Password:\n\t " + userSkeleton.getEmail());
+		logger.info("Reset Password:\n\t " + userSkeleton.getEmail());
 
 		// validate email
 		Resident user = userService.getUser(userSkeleton.getEmail());
@@ -86,7 +89,7 @@ public class FrontController {
 
 	@RequestMapping(method = RequestMethod.GET, value = "/users/{id}")
 	public ResponseEntity<Resident> getProfile(@PathVariable Integer id) {
-		System.out.println("Getting user profile:\n\t " + id);
+		logger.info("Getting user profile:\n\t " + id);
 
 		Resident user = userService.getUser(id);
 
@@ -97,7 +100,7 @@ public class FrontController {
 	@RequestMapping(method = RequestMethod.GET, value = "/users/{firstName}/{lastName}")
 	public ResponseEntity<List<UserDto>> getUsers(@PathVariable String firstName, @PathVariable String lastName) {
 
-		System.out.println("Getting user:\n\t " + firstName + " " + lastName);
+		logger.info("Getting user:\n\t " + firstName + " " + lastName);
 
 		List<UserDto> users = userService.getUsers(firstName, lastName);
 
@@ -108,7 +111,7 @@ public class FrontController {
 	@RequestMapping(method = RequestMethod.GET, value = "/users/find/{name}")
 	public ResponseEntity<List<UserDto>> getUserByMatch(@PathVariable String name) {
 
-		System.out.println("Finding users matching:\n\t " + name);
+		logger.info("Finding users matching:\n\t " + name);
 
 		List<UserDto> users = userService.getUsersDtosMatching(name);
 
@@ -117,27 +120,27 @@ public class FrontController {
 
 	@RequestMapping(method = RequestMethod.POST, value = "/users/{id}")
 	public ResponseEntity<Resident> updateProfile(@PathVariable Integer id, @RequestBody Resident user) {
-		System.out.println("Updating User:\n\t " + user);
+		logger.info("Updating User:\n\t " + user);
 
 		return ResponseEntity.ok(userService.updateUser(user, id));
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/users/password")
 	public ResponseEntity<Boolean> changePassword(@RequestBody Resident userSkeleton) {
-		System.out.println("Resetting Password to:\n\t " + userSkeleton);
+		logger.info("Resetting Password to:\n\t " + userSkeleton);
 
 		return ResponseEntity.ok(userService.changePassword(userSkeleton));
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/profilePictures/{uid}")
 	public ResponseEntity<Boolean> updateProfilePic(@RequestBody MultipartFile multipartFile, @PathVariable int uid) {
-		System.out.println("Updating Profile Pic:\n\t ");
+		logger.info("Updating Profile Pic:\n\t ");
 
 		// String filepath = "C:\\Users\\Joshua\\Pictures\\Memes\\testPic.png";
 
 		String url = ac.uploadFile(multipartFile);
 		userService.updateUserImage(url, uid);
-		System.out.println(url);
+		logger.info(url);
 
 		return ResponseEntity.ok(true);
 
@@ -146,7 +149,7 @@ public class FrontController {
 	// content, imageUrl, youtubeUrl
 	@RequestMapping(method = RequestMethod.POST, value = "/posts")
 	public ResponseEntity<Boolean> savePost(@RequestBody Post post) {
-		System.out.println("Saving Post:\n\t " + post);
+		logger.info("Saving Post:\n\t " + post);
 
 		// TODO validate
 
@@ -157,7 +160,7 @@ public class FrontController {
 
 	@RequestMapping(method = RequestMethod.GET, value = "/posts")
 	public ResponseEntity<List<Post>> getFeed() {
-		System.out.println("Getting All Posts:\n\t ");
+		logger.info("Getting All Posts:\n\t ");
 
 		List<Post> posts = postService.getAllPosts();
 
@@ -171,7 +174,7 @@ public class FrontController {
 	 */
 	@RequestMapping(method = RequestMethod.GET, value = "/posts/feed")
 	public ResponseEntity<List<Post>> getLimitedFeed() {
-		System.out.println("Getting Feed:\n\t ");
+		logger.info("Getting Feed:\n\t ");
 
 		List<Post> posts = postService.getPrevious20Posts();
 
@@ -185,7 +188,7 @@ public class FrontController {
 	// */
 	// @RequestMapping(method = RequestMethod.GET, value = "/posts/feed/{date}")
 	// public ResponseEntity<List<Post>> getFeedPast(@RequestParam Date date) {
-	// System.out.println("Getting Feed after date:\n\t" + date);
+	// logger.info("Getting Feed after date:\n\t" + date);
 	//
 	// // List<Post> posts = postService.getAllPostsPast(date);
 	//
@@ -195,7 +198,7 @@ public class FrontController {
 	// int
 	@RequestMapping(method = RequestMethod.POST, value = "/likes/{postId}")
 	public ResponseEntity<Boolean> likePost(@PathVariable Integer postId, @RequestBody Resident userSkeleton) {
-		System.out.println("Like Post:\n\t " + postId);
+		logger.info("Like Post:\n\t " + postId);
 
 		postService.likePost(postId, userSkeleton.getId());
 
@@ -205,7 +208,7 @@ public class FrontController {
 	// content, postId
 	@RequestMapping(method = RequestMethod.POST, value = "/comments")
 	public ResponseEntity<Boolean> comment(@RequestBody Consideration comment) {
-		System.out.println("Commenting:\n\t " + comment);
+		logger.info("Commenting:\n\t " + comment);
 
 		commentService.addComment(comment);
 
@@ -214,7 +217,7 @@ public class FrontController {
 
 	@RequestMapping(method = RequestMethod.GET, value = "/comments")
 	public ResponseEntity<List<Consideration>> getComments() {
-		System.out.println("Getting comments:\n\t ");
+		logger.info("Getting comments:\n\t ");
 
 		List<Consideration> comments = commentService.getAllComments();
 
@@ -223,7 +226,7 @@ public class FrontController {
 
 	@RequestMapping(method = RequestMethod.GET, value = "/notifications")
 	public ResponseEntity<List<Notification>> getNotifications() {
-		System.out.println("Getting Notifications:\n\t ");
+		logger.info("Getting Notifications:\n\t ");
 
 		List<Notification> notifications = notificationService.getAllNotification();
 
@@ -232,7 +235,7 @@ public class FrontController {
 
 	@RequestMapping(method = RequestMethod.POST, value = "/notifications")
 	public ResponseEntity<Boolean> addNotification(@RequestBody Notification notification) {
-		System.out.println("Adding notification:\n\t " + notification);
+		logger.info("Adding notification:\n\t " + notification);
 
 		notificationService.addNotification(notification);
 

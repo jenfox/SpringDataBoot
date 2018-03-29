@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,7 @@ import com.revature.projecttwo.email.EmailServiceImpl;
 
 @Service
 public class UserService {
+	private static Logger logger = LogManager.getLogger();
 
 	@Autowired
 	private UserRepo userRepo;
@@ -29,7 +32,7 @@ public class UserService {
 	private PasswordService passwordService;
 
 	public List<UserDto> getUsers(String firstName, String lastName) {
-		System.out.println("Getting all users matching:\n\t" + firstName + " " + lastName);
+		logger.info("Getting all users matching:\n\t" + firstName + " " + lastName);
 		List<UserDto> usersDtos = new ArrayList<>();
 		// method reference add method call
 		List<Resident> users = userRepo.findByFirstNameAndLastNameIgnoreCase(firstName, lastName);
@@ -42,7 +45,7 @@ public class UserService {
 	}
 
 	public List<UserDto> getUsersDtosMatching(String name) {
-		System.out.println("Getting all users matching name:\n\t" + name);
+		logger.info("Getting all users matching name:\n\t" + name);
 		List<UserDto> usersDtos = new ArrayList<>();
 
 		// regex it
@@ -59,7 +62,7 @@ public class UserService {
 	}
 
 	public Resident getUser(Integer id) {
-		System.out.println("Found User in DB:\n\t" + id);
+		logger.info("Found User in DB:\n\t" + id);
 		Optional<Resident> user = userRepo.findById(id);
 
 		Resident userObj = user.get();
@@ -69,20 +72,20 @@ public class UserService {
 	}
 
 	public Resident getUser(String email, String password) {
-		System.out.println("Found User in DB:\n\t" + email + " " + password);
+		logger.info("Found User in DB:\n\t" + email + " " + password);
 
 		Resident user = userRepo.getByEmail(email);
 
 		// check password encypt match
 		if (user != null && passwordEncoder.matches(password, user.getPassword())) {
-			System.out.println("Password matches email");
+			logger.info("Password matches email");
 
 			// remove password field
 			user.setPassword("");
 
 			return user;
 		} else {
-			System.out.println("Password does not match email");
+			logger.error("Password does not match email");
 			return null;
 		}
 	}
@@ -96,13 +99,13 @@ public class UserService {
 	public Resident getUser(String email) {
 		// 1. check if email is empty
 		if (email == null || email.isEmpty()) {
-			System.out.println("Email is Empty:\n\t" + email);
+			logger.error("Email is Empty:\n\t" + email);
 			return null;
 		}
 
 		Resident user = userRepo.getByEmail(email);
 
-		System.out.println("Found User in DB:\n\t" + email);
+		logger.info("Found User in DB:\n\t" + email);
 
 		return user;
 
@@ -117,22 +120,22 @@ public class UserService {
 	public boolean registerNewUserAccount(Resident user) {
 		// 1. check user obj exists and has required fields
 		if (!userValidation.checkUserHasEmailPassword(user)) {
-			System.out.println("User field(s) empty\n\t" + user.getEmail());
+			logger.error("User field(s) empty\n\t" + user.getEmail());
 			return false;
 		}
 
 		// 2. check email unique
 		if (!userValidation.checkEmailUnique(user.getEmail())) {
-			System.out.println("Email already taken\n\t" + user.getEmail());
+			logger.warn("Email already taken\n\t" + user.getEmail());
 			return false;
 		}
 
-		System.out.println("Saving User to DB:\n\t" + user);
+		logger.info("Saving User to DB:\n\t" + user);
 
 		// encode the user password before storing it into db
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 
-		System.out.println("Password Encryption = " + user.getPassword());
+		logger.debug("Password Encryption = " + user.getPassword());
 
 		return userRepo.save(user) != null;
 
@@ -149,17 +152,17 @@ public class UserService {
 		Resident userFound = userRepo.getById(id);
 
 		if (userFound == null) {
-			System.out.println("No user with id exists:\n\t" + id);
+			logger.error("No user with id exists:\n\t" + id);
 			return null;
 		}
 		// 1.5 check if there is anything to update
 		if (user == null) {
-			System.out.println("No fields to update:\n\t" + user);
+			logger.info("No fields to update:\n\t" + user);
 			userFound.setPassword("");
 			return userFound;
 		}
 
-		System.out.println("Updating User\n\t" + user + "\nin DB with:\n\t" + userFound);
+		logger.info("Updating User\n\t" + user + "\nin DB with:\n\t" + userFound);
 
 		// 2. Set any changed fields in user db obj
 		// first, last, dob, gender, phone
@@ -188,7 +191,7 @@ public class UserService {
 	public boolean updateUserPassword(Resident user) {
 		// 1. check if password exists
 		if (!userValidation.checkUserHasPassword(user)) {
-			System.out.println("No User Password:\n\t" + user);
+			logger.error("No User Password:\n\t" + user);
 			return false;
 		}
 		// 2. Encrypt password
@@ -200,10 +203,10 @@ public class UserService {
 
 	public boolean resetPassword(Resident user) {
 		if (!userValidation.checkUserHasEmail(user)) {
-			System.out.println("No User email\n\t" + user);
+			logger.error("No User email\n\t" + user);
 			return false;
 		}
-		System.out.println("Resetting user password\n\t" + user);
+		logger.info("Resetting user password\n\t" + user);
 
 		// send email to reset
 		String newPass = passwordService.generatePassword();
@@ -219,11 +222,11 @@ public class UserService {
 	public boolean changePassword(Resident user) {
 
 		if (!userValidation.checkUserHasEmail(user)) {
-			System.out.println("No User email\n\t" + user);
+			logger.error("No User email\n\t" + user);
 			return false;
 		}
 		Resident userFound = userRepo.getByEmail(user.getEmail());
-		System.out.println("Changing user password\n\t" + user.getPassword());
+		logger.info("Changing user password\n\t" + user.getPassword());
 		userFound.setPassword(user.getPassword());
 
 		return updateUserPassword(userFound);
@@ -231,12 +234,12 @@ public class UserService {
 	}
 
 	public void deleteUser(Integer id) {
-		System.out.println("Deleting User to DB:+\n\t" + id);
+		logger.info("Deleting User to DB:+\n\t" + id);
 		userRepo.deleteById(id);
 	}
 
 	public void updateUserImage(String path, int userId) {
-		System.out.println("Updating user picture in DB:+\n\t" + userId + " " + path);
+		logger.info("Updating user picture in DB:+\n\t" + userId + " " + path);
 		Resident user = userRepo.getById(userId);
 		user.setProfileUrl(path);
 		userRepo.save(user);

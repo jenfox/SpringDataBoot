@@ -22,36 +22,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable().authorizeRequests().antMatchers("/**").permitAll();
 
-		// http.authorizeRequests().antMatchers("/",
-		// "/home").permitAll().anyRequest().authenticated().and().formLogin()
-		// .loginPage("/login").permitAll().and().logout().permitAll();
 	}
-
-	// User Auth Configure, check user in DB
-	// encrypted password as bycrpt
-	// @Override
-	// protected void configure(AuthenticationManagerBuilder auth) throws Exception
-	// {
-	//
-	// auth.jdbcAuthentication().dataSource(dataSource)
-	// .usersByUsernameQuery("select email, password, true " + " from Resident where
-	// email=?")
-	// .passwordEncoder(passwordEncoder());
-	//
-	// }
 
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
 
-	// @Bean
-	// @Override
-	// public UserDetailsService userDetailsService() {
-	// UserDetails user =
-	// User.withDefaultPasswordEncoder().username("user").password("password").roles("USER")
-	// .build();
-	//
-	// return new InMemoryUserDetailsManager(user);
-	// }
 }
