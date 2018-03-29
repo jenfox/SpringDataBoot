@@ -1,0 +1,53 @@
+[INFO ] 2018-03-29 10:20:48.051 [main] Project2AlphaApplication - Started App
+[INFO ] 2018-03-29 10:20:48.196 [restartedMain] Project2AlphaApplication - Started App
+[INFO ] 2018-03-29 10:20:48.436 [restartedMain] Project2AlphaApplication - Starting Project2AlphaApplication on LAPTOP-ALP8185I with PID 8816 (C:\Users\Calcu\Documents\GITRepositories\Revature\SpringBootData\SpringDataBoot\Project2Alpha\target\classes started by JDRyder in C:\Users\Calcu\Documents\GITRepositories\Revature\SpringBootData\SpringDataBoot\Project2Alpha)
+[DEBUG] 2018-03-29 10:20:48.436 [restartedMain] Project2AlphaApplication - Running with Spring Boot v2.0.0.RELEASE, Spring v5.0.4.RELEASE
+[INFO ] 2018-03-29 10:20:48.436 [restartedMain] Project2AlphaApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-03-29 10:21:00.554 [restartedMain] Project2AlphaApplication - Started Project2AlphaApplication in 12.353 seconds (JVM running for 13.62)
+[INFO ] 2018-03-29 10:21:13.662 [http-nio-8080-exec-2] FrontController - Logging in User:
+	 User [id=null, email=calculustrumpet@gmail.com, firstName=null, lastName=null, genderId=null, phoneNumber=null, dob=null, profileUrl=null]
+[INFO ] 2018-03-29 10:21:13.662 [http-nio-8080-exec-2] UserService - Found User in DB:
+	calculustrumpet@gmail.com test
+[ERROR] 2018-03-29 10:21:13.827 [http-nio-8080-exec-2] UserService - Password does not match email
+[WARN ] 2018-03-29 10:21:13.827 [http-nio-8080-exec-2] FrontController - No user Found with email password combination
+[INFO ] 2018-03-29 10:21:26.988 [http-nio-8080-exec-1] FrontController - Logging in User:
+	 User [id=null, email=calculustrumpet@gmail.com, firstName=null, lastName=null, genderId=null, phoneNumber=null, dob=null, profileUrl=null]
+[INFO ] 2018-03-29 10:21:26.988 [http-nio-8080-exec-1] UserService - Found User in DB:
+	calculustrumpet@gmail.com test
+[ERROR] 2018-03-29 10:21:27.057 [http-nio-8080-exec-1] UserService - Password does not match email
+[WARN ] 2018-03-29 10:21:27.058 [http-nio-8080-exec-1] FrontController - No user Found with email password combination
+[INFO ] 2018-03-29 10:21:59.730 [http-nio-8080-exec-3] FrontController - Registering User:
+	 User [id=null, email=jdryder1994@gmail.com, firstName=null, lastName=null, genderId=null, phoneNumber=null, dob=null, profileUrl=null]
+[INFO ] 2018-03-29 10:21:59.801 [http-nio-8080-exec-3] UserService - Found User in DB:
+	jdryder1994@gmail.com
+[INFO ] 2018-03-29 10:21:59.801 [http-nio-8080-exec-3] UserService - Saving User to DB:
+	User [id=null, email=jdryder1994@gmail.com, firstName=null, lastName=null, genderId=null, phoneNumber=null, dob=null, profileUrl=null]
+[DEBUG] 2018-03-29 10:21:59.897 [http-nio-8080-exec-3] UserService - Password Encryption = $2a$10$sr6LrUvvt1On.0b4UzTr9./myJn76lBsA.QLgfar6lcEr8utkxKNe
+[INFO ] 2018-03-29 10:22:00.125 [http-nio-8080-exec-3] EmailServiceImpl - Sending simple message jdryder1994@gmail.com
+[INFO ] 2018-03-29 10:25:18.703 [http-nio-8080-exec-7] FrontController - Logging in User:
+	 User [id=null, email=jdryder1994@gmail.com, firstName=null, lastName=null, genderId=null, phoneNumber=null, dob=null, profileUrl=null]
+[INFO ] 2018-03-29 10:25:18.703 [http-nio-8080-exec-7] UserService - Found User in DB:
+	jdryder1994@gmail.com test
+[INFO ] 2018-03-29 10:25:18.872 [http-nio-8080-exec-7] UserService - Password matches email
+[INFO ] 2018-03-29 10:25:19.008 [http-nio-8080-exec-8] FrontController - Getting Feed:
+	 
+[INFO ] 2018-03-29 10:25:19.008 [http-nio-8080-exec-8] PostService - Getting last 20 posts:
+	
+[INFO ] 2018-03-29 10:26:28.759 [http-nio-8080-exec-1] FrontController - Updating User:
+	 User [id=null, email=null, firstName=notJD, lastName=Ryder, genderId=male, phoneNumber=(330) 316-0375, dob=null, profileUrl=null]
+[INFO ] 2018-03-29 10:26:28.831 [http-nio-8080-exec-1] UserService - Updating User
+	User [id=null, email=null, firstName=notJD, lastName=Ryder, genderId=male, phoneNumber=(330) 316-0375, dob=null, profileUrl=null]
+in DB with:
+	User [id=13, email=jdryder1994@gmail.com, firstName=null, lastName=null, genderId=null, phoneNumber=null, dob=null, profileUrl=null]
+[INFO ] 2018-03-29 10:26:44.826 [http-nio-8080-exec-4] FrontController - Updating Profile Pic:
+	 multipartFile
+[INFO ] 2018-03-29 10:26:45.321 [http-nio-8080-exec-4] UserService - Updating user picture in DB:+
+	13 1522333604828-breakAllTheThings.jpg
+[INFO ] 2018-03-29 10:26:45.459 [http-nio-8080-exec-4] FrontController - 1522333604828-breakAllTheThings.jpg
+[INFO ] 2018-03-29 10:26:45.459 [http-nio-8080-exec-4] UserService - Found User in DB:
+	13
+[INFO ] 2018-03-29 10:42:20.060 [restartedMain] Project2AlphaApplication - Started App
+[INFO ] 2018-03-29 10:42:20.114 [restartedMain] Project2AlphaApplication - Starting Project2AlphaApplication on LAPTOP-ALP8185I with PID 8816 (C:\Users\Calcu\Documents\GITRepositories\Revature\SpringBootData\SpringDataBoot\Project2Alpha\target\classes started by JDRyder in C:\Users\Calcu\Documents\GITRepositories\Revature\SpringBootData\SpringDataBoot\Project2Alpha)
+[DEBUG] 2018-03-29 10:42:20.114 [restartedMain] Project2AlphaApplication - Running with Spring Boot v2.0.0.RELEASE, Spring v5.0.4.RELEASE
+[INFO ] 2018-03-29 10:42:20.114 [restartedMain] Project2AlphaApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-03-29 10:42:31.416 [restartedMain] Project2AlphaApplication - Started Project2AlphaApplication in 11.356 seconds (JVM running for 1304.484)
