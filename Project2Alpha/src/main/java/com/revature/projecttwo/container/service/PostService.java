@@ -137,7 +137,7 @@ public class PostService {
 		return postRepo.save(post) != null;
 	}
 
-	public boolean likePost(Integer postId, Integer userId) {
+	public Post likePost(Integer postId, Integer userId) {
 
 		// 1. check if userId exists
 		if (userService.getUser(userId) == null) {
@@ -164,7 +164,7 @@ public class PostService {
 
 		post.setLikes(likes.toArray(new Integer[likes.size()]));
 
-		return postRepo.save(post) != null;
+		return postRepo.save(post);
 
 	}
 
