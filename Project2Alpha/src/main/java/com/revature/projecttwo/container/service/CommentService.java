@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,12 +14,13 @@ import com.revature.projecttwo.container.repo.CommentRepo;
 
 @Service
 public class CommentService {
+	private static Logger logger = LogManager.getLogger();
 
 	@Autowired
 	private CommentRepo commentRepo;
 
 	public List<Consideration> getAllComments() {
-		System.out.println("Getting all comments:\n\t");
+		logger.info("Getting all comments:\n\t");
 		List<Consideration> comments = new ArrayList<>();
 		// method reference add method call
 		commentRepo.findAll().forEach(comments::add);
@@ -26,24 +29,24 @@ public class CommentService {
 	}
 
 	public Consideration getComment(Integer id) {
-		System.out.println("Found Comment in DB:\n\t" + id);
+		logger.info("Found Comment in DB:\n\t" + id);
 		Optional<Consideration> comment = commentRepo.findById(id);
 
 		return comment.get();
 	}
 
 	public void addComment(Consideration comment) {
-		System.out.println("Saving Comment to DB:\n\t" + comment);
+		logger.info("Saving Comment to DB:\n\t" + comment);
 		commentRepo.save(comment);
 	}
 
 	public void deleteComment(Consideration comment, String id) {
-		System.out.println("Updating Comment to DB:\n\t" + comment);
+		logger.info("Updating Comment to DB:\n\t" + comment);
 		commentRepo.save(comment);
 	}
 
 	public void deleteComment(Integer id) {
-		System.out.println("Deleting Comment to DB:+\n\t" + id);
+		logger.info("Deleting Comment to DB:+\n\t" + id);
 		commentRepo.deleteById(id);
 	}
 }

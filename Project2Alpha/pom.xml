@@ -25,6 +25,22 @@
 	</properties>
 
 	<dependencies>
+		<!-- Fight the Spring Boot Built in Logback -->
+		<dependency>
+		   <groupId>org.springframework.boot</groupId>
+		   <artifactId>spring-boot-starter</artifactId>
+		   <exclusions>
+		      <exclusion>
+		         <groupId>org.springframework.boot</groupId>
+		         <artifactId>spring-boot-starter-logging</artifactId>
+		      </exclusion>
+		   </exclusions>
+		</dependency>
+		<dependency>
+		   <groupId>org.springframework.boot</groupId>
+		   <artifactId>spring-boot-starter-log4j2</artifactId>
+		</dependency>
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -76,14 +92,6 @@
 		    <version>2.2.0.RELEASE</version>
 		</dependency>
 		
-		<!-- Test Dependency -->
-		<dependency>
-		    <groupId>org.springframework.boot</groupId>
-		    <artifactId>spring-boot-starter-test</artifactId>
-		    <scope>test</scope>
-		</dependency>
-		
-
 		<!-- S3 Buckets Dependencies -->
 		<dependency>
 		    <groupId>com.amazonaws</groupId>
@@ -119,6 +127,16 @@
 		    <groupId>io.springfox</groupId>
 		    <artifactId>springfox-swagger-ui</artifactId>
 		    <version>2.7.0</version>
+		</dependency>
+		
+		<!-- Log4j2 Dependency -->
+		<dependency>
+		   <groupId>org.apache.logging.log4j</groupId>
+		   <artifactId>log4j-api</artifactId>
+		</dependency>
+		<dependency>
+		   <groupId>org.apache.logging.log4j</groupId>
+		   <artifactId>log4j-core</artifactId>
 		</dependency>
 		
 		

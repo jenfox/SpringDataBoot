@@ -3,6 +3,8 @@ package com.revature.projecttwo.email;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -11,12 +13,13 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class EmailServiceImpl {
+	private static Logger logger = LogManager.getLogger();
 
 	@Autowired
 	public JavaMailSender emailSender;
 
 	public void sendSimpleMessage(String to, String subject, String text) {
-		System.out.println("Sending simple message " + to + " " + subject + " " + text);
+		logger.info("Sending simple message " + to + " " + subject + " " + text);
 		SimpleMailMessage message = new SimpleMailMessage();
 		message.setTo(to);
 		message.setSubject(subject);
@@ -25,7 +28,7 @@ public class EmailServiceImpl {
 	}
 
 	public void sendRegister(String to, String password) {
-		System.out.println("Sending simple message " + to);
+		logger.info("Sending simple message " + to);
 		MimeMessage mimeMessage = emailSender.createMimeMessage();
 
 		try {
@@ -39,13 +42,13 @@ public class EmailServiceImpl {
 			helper.setFrom("TeamFiveSocial@gmail.com");
 			helper.setSubject("Welcome to Friendscape");
 		} catch (MessagingException e) {
-			System.out.println("ERROR" + e.getMessage());
+			logger.error("ERROR" + e.getMessage());
 		}
 		emailSender.send(mimeMessage);
 	}
 
 	public void sendReset(String to, String newPassword) {
-		System.out.println("Sending simple message " + to);
+		logger.info("Sending simple message " + to);
 
 		MimeMessage mimeMessage = emailSender.createMimeMessage();
 
@@ -61,7 +64,7 @@ public class EmailServiceImpl {
 			helper.setFrom("TeamFiveSocial@gmail.com");
 			helper.setSubject("Password Reset");
 		} catch (MessagingException e) {
-			System.out.println("ERROR" + e.getMessage());
+			logger.error("ERROR" + e.getMessage());
 		}
 		emailSender.send(mimeMessage);
 
