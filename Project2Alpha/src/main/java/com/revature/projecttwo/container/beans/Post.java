@@ -2,6 +2,7 @@ package com.revature.projecttwo.container.beans;
 
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -41,6 +43,9 @@ public class Post {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "dateCreated", nullable = false)
 	private Date dateCreated;
+
+	@OneToMany
+	private List<Consideration> considerations;
 
 	// assign date on create
 	@PrePersist
@@ -116,6 +121,14 @@ public class Post {
 
 	public void setDateCreated(Date dateCreated) {
 		this.dateCreated = dateCreated;
+	}
+
+	public List<Consideration> getConsiderations() {
+		return considerations;
+	}
+
+	public void setConsiderations(List<Consideration> considerations) {
+		this.considerations = considerations;
 	}
 
 	@Override

@@ -203,6 +203,15 @@ public class FrontController {
 		return ResponseEntity.ok(posts);
 	}
 
+	@RequestMapping(method = RequestMethod.GET, value = "/posts/feed/{uid}")
+	public ResponseEntity<List<Post>> getUserFeed(@PathVariable Integer uid) {
+		logger.info("Getting Feed for user:\n\t " + uid);
+
+		List<Post> posts = postService.getPostByAuthorId(uid);
+
+		return ResponseEntity.ok(posts);
+	}
+
 	// /**
 	// * NEW 20 POSTS PAST DATE
 	// *
@@ -212,7 +221,7 @@ public class FrontController {
 	// public ResponseEntity<List<Post>> getFeedPast(@RequestParam Date date) {
 	// logger.info("Getting Feed after date:\n\t" + date);
 	//
-	// // List<Post> posts = postService.getAllPostsPast(date);
+	// List<Post> posts = postService.getAllPostsPast(date);
 	//
 	// return ResponseEntity.ok(posts);
 	// }
