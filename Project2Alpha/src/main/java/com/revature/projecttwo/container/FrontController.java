@@ -185,6 +185,15 @@ public class FrontController {
 		return ResponseEntity.ok(posts);
 	}
 
+	@RequestMapping(method = RequestMethod.GET, value = "/posts/feed/{uid}")
+	public ResponseEntity<List<Post>> getUserFeed(@PathVariable Integer uid) {
+		logger.info("Getting Feed for user:\n\t " + uid);
+
+		List<Post> posts = postService.getPostByAuthorId(uid);
+
+		return ResponseEntity.ok(posts);
+	}
+
 	// /**
 	// * NEW 20 POSTS PAST DATE
 	// *

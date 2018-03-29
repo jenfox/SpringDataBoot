@@ -1,6 +1,12 @@
-[INFO ] 2018-03-28 22:41:31.628 [main] Project2AlphaApplication - Started App
-[INFO ] 2018-03-28 22:41:31.826 [restartedMain] Project2AlphaApplication - Started App
-[INFO ] 2018-03-28 22:41:32.166 [restartedMain] Project2AlphaApplication - Starting Project2AlphaApplication on DESKTOP-J2 with PID 12124 (C:\Users\Jennifer\Desktop\Proj2\SpringDataBoot\Project2Alpha\target\classes started by Jennifer in C:\Users\Jennifer\Desktop\Proj2\SpringDataBoot\Project2Alpha)
-[DEBUG] 2018-03-28 22:41:32.167 [restartedMain] Project2AlphaApplication - Running with Spring Boot v2.0.0.RELEASE, Spring v5.0.4.RELEASE
-[INFO ] 2018-03-28 22:41:32.167 [restartedMain] Project2AlphaApplication - No active profile set, falling back to default profiles: default
-[INFO ] 2018-03-28 22:41:51.170 [restartedMain] Project2AlphaApplication - Started Project2AlphaApplication in 19.337 seconds (JVM running for 20.417)
+[INFO ] 2018-03-29 08:27:44.675 [main] Project2AlphaApplication - Started App
+[INFO ] 2018-03-29 08:27:45.054 [restartedMain] Project2AlphaApplication - Started App
+[INFO ] 2018-03-29 08:27:45.687 [restartedMain] Project2AlphaApplication - Starting Project2AlphaApplication on DESKTOP-J2 with PID 12320 (C:\Users\Jennifer\Desktop\Proj2\SpringDataBoot\Project2Alpha\target\classes started by Jennifer in C:\Users\Jennifer\Desktop\Proj2\SpringDataBoot\Project2Alpha)
+[DEBUG] 2018-03-29 08:27:45.689 [restartedMain] Project2AlphaApplication - Running with Spring Boot v2.0.0.RELEASE, Spring v5.0.4.RELEASE
+[INFO ] 2018-03-29 08:27:45.691 [restartedMain] Project2AlphaApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-03-29 08:28:12.387 [restartedMain] Project2AlphaApplication - Started Project2AlphaApplication in 27.322 seconds (JVM running for 29.376)
+[INFO ] 2018-03-29 08:28:26.624 [http-nio-8080-exec-2] FrontController - Getting Feed for user:
+	 38
+[INFO ] 2018-03-29 08:28:26.625 [http-nio-8080-exec-2] UserService - Found User in DB:
+	38
+[INFO ] 2018-03-29 08:28:26.853 [http-nio-8080-exec-2] PostService - Getting last 20 posts:
+	
