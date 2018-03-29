@@ -36,6 +36,8 @@ public class AmazonClient {
 	private String secretKey;
 
 	public String uploadFile(MultipartFile multipartFile) {
+		
+		System.out.println("You've made it this far " + multipartFile.getName());
 
 		String fileUrl = "";
 		String fileName = "";

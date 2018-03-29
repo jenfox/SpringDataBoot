@@ -132,17 +132,20 @@ public class FrontController {
 		return ResponseEntity.ok(userService.changePassword(userSkeleton));
 	}
 
+	@CrossOrigin(origins = "http://localhost:4200")
 	@RequestMapping(method = RequestMethod.POST, value = "/profilePictures/{uid}")
 	public ResponseEntity<Boolean> updateProfilePic(@RequestBody MultipartFile multipartFile, @PathVariable int uid) {
-		logger.info("Updating Profile Pic:\n\t ");
+		logger.info("Updating Profile Pic:\n\t "+multipartFile.getName());
 
-		// String filepath = "C:\\Users\\Joshua\\Pictures\\Memes\\testPic.png";
+		//saves the url we append to the bucket endpoint so we can save it in the database
 
 		String url = ac.uploadFile(multipartFile);
 		userService.updateUserImage(url, uid);
 		logger.info(url);
 
-		return ResponseEntity.ok(true);
+		Resident userFound = userService.getUser(uid);
+
+		return ResponseEntity.ok(userFound);
 
 	}
 
