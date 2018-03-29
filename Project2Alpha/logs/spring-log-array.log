@@ -1,6 +1,18 @@
-[INFO ] 2018-03-28 22:41:31.628 [main] Project2AlphaApplication - Started App
-[INFO ] 2018-03-28 22:41:31.826 [restartedMain] Project2AlphaApplication - Started App
-[INFO ] 2018-03-28 22:41:32.166 [restartedMain] Project2AlphaApplication - Starting Project2AlphaApplication on DESKTOP-J2 with PID 12124 (C:\Users\Jennifer\Desktop\Proj2\SpringDataBoot\Project2Alpha\target\classes started by Jennifer in C:\Users\Jennifer\Desktop\Proj2\SpringDataBoot\Project2Alpha)
-[DEBUG] 2018-03-28 22:41:32.167 [restartedMain] Project2AlphaApplication - Running with Spring Boot v2.0.0.RELEASE, Spring v5.0.4.RELEASE
-[INFO ] 2018-03-28 22:41:32.167 [restartedMain] Project2AlphaApplication - No active profile set, falling back to default profiles: default
-[INFO ] 2018-03-28 22:41:51.170 [restartedMain] Project2AlphaApplication - Started Project2AlphaApplication in 19.337 seconds (JVM running for 20.417)
+[INFO ] 2018-03-29 03:28:02.473 [main] Project2AlphaApplication - Started App
+[INFO ] 2018-03-29 03:28:02.820 [restartedMain] Project2AlphaApplication - Started App
+[INFO ] 2018-03-29 03:28:03.629 [restartedMain] Project2AlphaApplication - Starting Project2AlphaApplication on DESKTOP-J2 with PID 12092 (C:\Users\Jennifer\Desktop\Proj2\SpringDataBoot\Project2Alpha\target\classes started by Jennifer in C:\Users\Jennifer\Desktop\Proj2\SpringDataBoot\Project2Alpha)
+[DEBUG] 2018-03-29 03:28:03.630 [restartedMain] Project2AlphaApplication - Running with Spring Boot v2.0.0.RELEASE, Spring v5.0.4.RELEASE
+[INFO ] 2018-03-29 03:28:03.631 [restartedMain] Project2AlphaApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-03-29 03:28:30.021 [restartedMain] Project2AlphaApplication - Started Project2AlphaApplication in 27.192 seconds (JVM running for 29.222)
+[INFO ] 2018-03-29 03:29:12.489 [http-nio-8080-exec-2] FrontController - Registering User:
+	 User [id=null, email=jrufox@gmail.com, firstName=null, lastName=null, genderId=null, phoneNumber=null, dob=null, profileUrl=null]
+[INFO ] 2018-03-29 03:29:12.902 [http-nio-8080-exec-2] UserService - Found User in DB:
+	jrufox@gmail.com
+[WARN ] 2018-03-29 03:29:12.903 [http-nio-8080-exec-2] UserService - Email already taken
+	jrufox@gmail.com
+[INFO ] 2018-03-29 03:29:19.089 [http-nio-8080-exec-3] FrontController - Logging in User:
+	 User [id=null, email=jrufox@gmail.com, firstName=null, lastName=null, genderId=null, phoneNumber=null, dob=null, profileUrl=null]
+[INFO ] 2018-03-29 03:29:19.090 [http-nio-8080-exec-3] UserService - Found User in DB:
+	jrufox@gmail.com test
+[ERROR] 2018-03-29 03:29:19.189 [http-nio-8080-exec-3] UserService - Password does not match email
+[WARN ] 2018-03-29 03:29:19.189 [http-nio-8080-exec-3] FrontController - No user Found with email password combination

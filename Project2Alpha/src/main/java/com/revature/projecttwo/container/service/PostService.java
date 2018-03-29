@@ -64,7 +64,7 @@ public class PostService {
 
 		return posts;
 	}
-	//
+
 	// public List<Post> getAllPostsPast(Date date) {
 	// logger.info("Getting all posts past date:\n\t" + date);
 	// List<Post> posts = new ArrayList<>();
@@ -80,7 +80,7 @@ public class PostService {
 	 * @param id
 	 * @return
 	 */
-	public Post getPost(Integer id) {
+	public Post getPostById(Integer id) {
 		logger.info("Found Post in DB:\n\t" + id);
 		Optional<Post> post = postRepo.findById(id);
 		Post postFound = post.get();
@@ -90,28 +90,6 @@ public class PostService {
 			postFound.getAuthor().setPassword("");
 
 		return post.get();
-	}
-
-	public List<Post> getPostByAuthorId(Integer authorId) {
-		// 1. check if author exists
-		if (userService.getUser(authorId) == null) {
-			logger.error("Author ID set in post DNE:\n\t");
-			return null;
-		}
-
-		// 2. Get the posts
-		logger.info("Getting last 20 posts:\n\t");
-		List<Post> posts = new ArrayList<>();
-		// method reference add method call
-		postRepo.findByAuthorId(authorId).forEach(posts::add);
-
-		// 3. Remove User password field from post user obj
-		for (Post p : posts) {
-			if (p.getAuthor() != null)
-				p.getAuthor().setPassword("");
-		}
-
-		return posts;
 	}
 
 	public boolean addPost(Post post) {

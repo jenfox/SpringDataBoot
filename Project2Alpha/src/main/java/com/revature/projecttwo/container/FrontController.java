@@ -194,7 +194,7 @@ public class FrontController {
 	// public ResponseEntity<List<Post>> getFeedPast(@RequestParam Date date) {
 	// logger.info("Getting Feed after date:\n\t" + date);
 	//
-	// // List<Post> posts = postService.getAllPostsPast(date);
+	// List<Post> posts = postService.getAllPostsPast(date);
 	//
 	// return ResponseEntity.ok(posts);
 	// }

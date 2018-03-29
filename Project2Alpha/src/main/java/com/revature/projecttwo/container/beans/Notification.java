@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -19,9 +18,6 @@ public class Notification {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-
-	@ManyToOne
-	private Resident user;
 
 	@Size(max = 200)
 	private String content;
@@ -42,10 +38,9 @@ public class Notification {
 
 	}
 
-	public Notification(int id, Resident user, String content, String url) {
+	public Notification(int id, String content, String url) {
 		super();
 		this.id = id;
-		this.user = user;
 		this.content = content;
 		this.url = url;
 	}
@@ -56,14 +51,6 @@ public class Notification {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public Resident getUser() {
-		return user;
-	}
-
-	public void setUser(Resident user) {
-		this.user = user;
 	}
 
 	public String getContent() {
@@ -92,7 +79,7 @@ public class Notification {
 
 	@Override
 	public String toString() {
-		return "Notification [id=" + id + ", user=" + user + ", content=" + content + ", url=" + url + "]";
+		return "Notification [id=" + id + ", content=" + content + ", url=" + url + "]";
 	}
 
 }
