@@ -111,11 +111,6 @@
 		</dependency>
 		
 	    <!-- Local Oracle Driver JDBC jar  -->
-	  	<dependency>
-		     <groupId>com.oracle.sucks</groupId>
-		     <artifactId>OJDBC8</artifactId>
-		     <version>1.0</version>
-		</dependency>
 		
 		<!-- Swagger Dep -->
 		<dependency>

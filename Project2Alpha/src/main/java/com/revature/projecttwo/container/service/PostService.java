@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.projecttwo.container.beans.Post;
+import com.revature.projecttwo.container.beans.Resident;
 import com.revature.projecttwo.container.repo.PostRepo;
 import com.revature.projecttwo.container.validation.PostValidService;
 
@@ -167,5 +168,5 @@ public class PostService {
 		logger.info("Deleting Post to DB:+\n\t" + id);
 		postRepo.deleteById(id);
 	}
-
+	
 }
