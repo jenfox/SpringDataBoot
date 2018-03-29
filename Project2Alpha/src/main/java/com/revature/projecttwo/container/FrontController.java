@@ -134,10 +134,11 @@ public class FrontController {
 
 	@CrossOrigin(origins = "http://localhost:4200")
 	@RequestMapping(method = RequestMethod.POST, value = "/profilePictures/{uid}")
-	public ResponseEntity<Boolean> updateProfilePic(@RequestBody MultipartFile multipartFile, @PathVariable int uid) {
-		logger.info("Updating Profile Pic:\n\t "+multipartFile.getName());
+	public ResponseEntity<Resident> updateProfilePic(@RequestBody MultipartFile multipartFile, @PathVariable int uid) {
+		logger.info("Updating Profile Pic:\n\t " + multipartFile.getName());
 
-		//saves the url we append to the bucket endpoint so we can save it in the database
+		// saves the url we append to the bucket endpoint so we can save it in the
+		// database
 
 		String url = ac.uploadFile(multipartFile);
 		userService.updateUserImage(url, uid);
@@ -200,12 +201,12 @@ public class FrontController {
 
 	// int
 	@RequestMapping(method = RequestMethod.POST, value = "/likes/{postId}")
-	public ResponseEntity<Boolean> likePost(@PathVariable Integer postId, @RequestBody Resident userSkeleton) {
+	public ResponseEntity<Post> likePost(@PathVariable Integer postId, @RequestBody Resident userSkeleton) {
 		logger.info("Like Post:\n\t " + postId);
 
-		postService.likePost(postId, userSkeleton.getId());
+		Post post = postService.likePost(postId, userSkeleton.getId());
 
-		return ResponseEntity.ok(true);
+		return ResponseEntity.ok(post);
 	}
 
 	// content, postId
