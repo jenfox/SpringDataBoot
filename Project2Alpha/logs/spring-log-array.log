@@ -1,6 +1,303 @@
-[INFO ] 2018-03-28 22:41:31.628 [main] Project2AlphaApplication - Started App
-[INFO ] 2018-03-28 22:41:31.826 [restartedMain] Project2AlphaApplication - Started App
-[INFO ] 2018-03-28 22:41:32.166 [restartedMain] Project2AlphaApplication - Starting Project2AlphaApplication on DESKTOP-J2 with PID 12124 (C:\Users\Jennifer\Desktop\Proj2\SpringDataBoot\Project2Alpha\target\classes started by Jennifer in C:\Users\Jennifer\Desktop\Proj2\SpringDataBoot\Project2Alpha)
-[DEBUG] 2018-03-28 22:41:32.167 [restartedMain] Project2AlphaApplication - Running with Spring Boot v2.0.0.RELEASE, Spring v5.0.4.RELEASE
-[INFO ] 2018-03-28 22:41:32.167 [restartedMain] Project2AlphaApplication - No active profile set, falling back to default profiles: default
-[INFO ] 2018-03-28 22:41:51.170 [restartedMain] Project2AlphaApplication - Started Project2AlphaApplication in 19.337 seconds (JVM running for 20.417)
+[INFO ] 2018-03-29 12:56:12.175 [main] Project2AlphaApplication - Started App
+[INFO ] 2018-03-29 12:56:12.405 [restartedMain] Project2AlphaApplication - Started App
+[INFO ] 2018-03-29 12:56:12.830 [restartedMain] Project2AlphaApplication - Starting Project2AlphaApplication on idea-PC with PID 2184 (C:\Users\Joshua\SpringDataBoot\Project2Alpha\target\classes started by Joshua in C:\Users\Joshua\SpringDataBoot\Project2Alpha)
+[DEBUG] 2018-03-29 12:56:12.832 [restartedMain] Project2AlphaApplication - Running with Spring Boot v2.0.0.RELEASE, Spring v5.0.4.RELEASE
+[INFO ] 2018-03-29 12:56:12.832 [restartedMain] Project2AlphaApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-03-29 12:56:33.052 [restartedMain] Project2AlphaApplication - Started Project2AlphaApplication in 20.642 seconds (JVM running for 22.421)
+[INFO ] 2018-03-29 12:58:10.013 [restartedMain] Project2AlphaApplication - Started App
+[INFO ] 2018-03-29 12:58:10.138 [restartedMain] Project2AlphaApplication - Starting Project2AlphaApplication on idea-PC with PID 2184 (C:\Users\Joshua\SpringDataBoot\Project2Alpha\target\classes started by Joshua in C:\Users\Joshua\SpringDataBoot\Project2Alpha)
+[DEBUG] 2018-03-29 12:58:10.138 [restartedMain] Project2AlphaApplication - Running with Spring Boot v2.0.0.RELEASE, Spring v5.0.4.RELEASE
+[INFO ] 2018-03-29 12:58:10.138 [restartedMain] Project2AlphaApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-03-29 12:58:21.236 [restartedMain] Project2AlphaApplication - Started Project2AlphaApplication in 11.216 seconds (JVM running for 130.605)
+[INFO ] 2018-03-29 12:59:01.566 [http-nio-8080-exec-2] FrontController - Logging in User:
+	 User [id=null, email=jtreek@gmail.com, firstName=null, lastName=null, genderId=null, phoneNumber=null, dob=null, profileUrl=null]
+[INFO ] 2018-03-29 12:59:01.567 [http-nio-8080-exec-2] UserService - Found User in DB:
+	jtreek@gmail.com sourgrapes
+[ERROR] 2018-03-29 12:59:01.896 [http-nio-8080-exec-2] UserService - Password does not match email
+[WARN ] 2018-03-29 12:59:01.896 [http-nio-8080-exec-2] FrontController - No user Found with email password combination
+[INFO ] 2018-03-29 12:59:44.513 [http-nio-8080-exec-3] FrontController - Logging in User:
+	 User [id=null, email=jtreek@gmail.com, firstName=null, lastName=null, genderId=null, phoneNumber=null, dob=null, profileUrl=null]
+[INFO ] 2018-03-29 12:59:44.514 [http-nio-8080-exec-3] UserService - Found User in DB:
+	jtreek@gmail.com sourgrapes
+[ERROR] 2018-03-29 12:59:44.609 [http-nio-8080-exec-3] UserService - Password does not match email
+[WARN ] 2018-03-29 12:59:44.609 [http-nio-8080-exec-3] FrontController - No user Found with email password combination
+[INFO ] 2018-03-29 13:00:26.375 [http-nio-8080-exec-4] FrontController - Logging in User:
+	 User [id=null, email=jtreek@gmail.com, firstName=null, lastName=null, genderId=null, phoneNumber=null, dob=null, profileUrl=null]
+[INFO ] 2018-03-29 13:00:26.375 [http-nio-8080-exec-4] UserService - Found User in DB:
+	jtreek@gmail.com sourgrapes
+[ERROR] 2018-03-29 13:00:26.477 [http-nio-8080-exec-4] UserService - Password does not match email
+[WARN ] 2018-03-29 13:00:26.478 [http-nio-8080-exec-4] FrontController - No user Found with email password combination
+[INFO ] 2018-03-29 13:00:54.983 [http-nio-8080-exec-6] FrontController - Registering User:
+	 User [id=null, email=j@gam.com, firstName=null, lastName=null, genderId=null, phoneNumber=null, dob=null, profileUrl=null]
+[INFO ] 2018-03-29 13:00:55.076 [http-nio-8080-exec-6] UserService - Found User in DB:
+	j@gam.com
+[INFO ] 2018-03-29 13:00:55.076 [http-nio-8080-exec-6] UserService - Saving User to DB:
+	User [id=null, email=j@gam.com, firstName=null, lastName=null, genderId=null, phoneNumber=null, dob=null, profileUrl=null]
+[DEBUG] 2018-03-29 13:00:55.209 [http-nio-8080-exec-6] UserService - Password Encryption = $2a$10$sArvclMbgI.H6x5OlgDhROvBi2e8lcT.tHjLA5ROTMnwf0HiOEtue
+[INFO ] 2018-03-29 13:00:55.496 [http-nio-8080-exec-6] EmailServiceImpl - Sending simple message j@gam.com
+[INFO ] 2018-03-29 13:01:02.096 [http-nio-8080-exec-7] FrontController - Logging in User:
+	 User [id=null, email=j@gam.com, firstName=null, lastName=null, genderId=null, phoneNumber=null, dob=null, profileUrl=null]
+[INFO ] 2018-03-29 13:01:02.097 [http-nio-8080-exec-7] UserService - Found User in DB:
+	j@gam.com 123
+[INFO ] 2018-03-29 13:01:02.309 [http-nio-8080-exec-7] UserService - Password matches email
+[INFO ] 2018-03-29 13:01:02.437 [http-nio-8080-exec-9] FrontController - Getting Feed:
+	 
+[INFO ] 2018-03-29 13:01:02.437 [http-nio-8080-exec-9] PostService - Getting last 20 posts:
+	
+[INFO ] 2018-03-29 13:01:20.478 [http-nio-8080-exec-10] FrontController - Logging in User:
+	 User [id=null, email=j@gam.com, firstName=null, lastName=null, genderId=null, phoneNumber=null, dob=null, profileUrl=null]
+[INFO ] 2018-03-29 13:01:20.479 [http-nio-8080-exec-10] UserService - Found User in DB:
+	j@gam.com 123
+[INFO ] 2018-03-29 13:01:20.695 [http-nio-8080-exec-10] UserService - Password matches email
+[INFO ] 2018-03-29 13:01:20.726 [http-nio-8080-exec-1] FrontController - Getting Feed:
+	 
+[INFO ] 2018-03-29 13:01:20.726 [http-nio-8080-exec-1] PostService - Getting last 20 posts:
+	
+[INFO ] 2018-03-29 13:01:39.462 [http-nio-8080-exec-2] FrontController - Adding picture to Post:
+	 org.springframework.web.multipart.support.StandardMultipartHttpServletRequest$StandardMultipartFile@c8cb2c
+[INFO ] 2018-03-29 13:01:39.462 [http-nio-8080-exec-2] FrontController - There be a photo in this post
+[INFO ] 2018-03-29 13:03:06.349 [restartedMain] Project2AlphaApplication - Started App
+[INFO ] 2018-03-29 13:03:06.445 [restartedMain] Project2AlphaApplication - Starting Project2AlphaApplication on idea-PC with PID 2184 (C:\Users\Joshua\SpringDataBoot\Project2Alpha\target\classes started by Joshua in C:\Users\Joshua\SpringDataBoot\Project2Alpha)
+[DEBUG] 2018-03-29 13:03:06.445 [restartedMain] Project2AlphaApplication - Running with Spring Boot v2.0.0.RELEASE, Spring v5.0.4.RELEASE
+[INFO ] 2018-03-29 13:03:06.446 [restartedMain] Project2AlphaApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-03-29 13:03:17.577 [restartedMain] Project2AlphaApplication - Started Project2AlphaApplication in 11.221 seconds (JVM running for 426.946)
+[INFO ] 2018-03-29 13:03:29.436 [http-nio-8080-exec-1] FrontController - Adding picture to Post:
+	 org.springframework.web.multipart.support.StandardMultipartHttpServletRequest$StandardMultipartFile@17e76c6
+[INFO ] 2018-03-29 13:03:29.436 [http-nio-8080-exec-1] FrontController - There be a photo in this post
+[INFO ] 2018-03-29 13:05:16.017 [http-nio-8080-exec-3] FrontController - Adding picture to Post:
+	 org.springframework.web.multipart.support.StandardMultipartHttpServletRequest$StandardMultipartFile@ac7830
+[INFO ] 2018-03-29 13:05:16.017 [http-nio-8080-exec-3] FrontController - There be a photo in this post
+[INFO ] 2018-03-29 13:12:05.731 [restartedMain] Project2AlphaApplication - Started App
+[INFO ] 2018-03-29 13:12:05.809 [restartedMain] Project2AlphaApplication - Starting Project2AlphaApplication on idea-PC with PID 2184 (C:\Users\Joshua\SpringDataBoot\Project2Alpha\target\classes started by Joshua in C:\Users\Joshua\SpringDataBoot\Project2Alpha)
+[DEBUG] 2018-03-29 13:12:05.809 [restartedMain] Project2AlphaApplication - Running with Spring Boot v2.0.0.RELEASE, Spring v5.0.4.RELEASE
+[INFO ] 2018-03-29 13:12:05.809 [restartedMain] Project2AlphaApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-03-29 13:12:17.524 [restartedMain] Project2AlphaApplication - Started Project2AlphaApplication in 11.788 seconds (JVM running for 966.892)
+[INFO ] 2018-03-29 13:12:17.544 [http-nio-8080-exec-2] FrontController - Getting Feed:
+	 
+[INFO ] 2018-03-29 13:12:17.544 [http-nio-8080-exec-2] PostService - Getting last 20 posts:
+	
+[INFO ] 2018-03-29 13:12:38.616 [http-nio-8080-exec-4] FrontController - Adding picture to Post:
+	 org.springframework.web.multipart.support.StandardMultipartHttpServletRequest$StandardMultipartFile@4e5c99
+[INFO ] 2018-03-29 13:12:38.616 [http-nio-8080-exec-4] FrontController - There be a photo in this post
+[INFO ] 2018-03-29 13:13:29.920 [restartedMain] Project2AlphaApplication - Started App
+[INFO ] 2018-03-29 13:13:29.997 [restartedMain] Project2AlphaApplication - Starting Project2AlphaApplication on idea-PC with PID 2184 (C:\Users\Joshua\SpringDataBoot\Project2Alpha\target\classes started by Joshua in C:\Users\Joshua\SpringDataBoot\Project2Alpha)
+[DEBUG] 2018-03-29 13:13:29.997 [restartedMain] Project2AlphaApplication - Running with Spring Boot v2.0.0.RELEASE, Spring v5.0.4.RELEASE
+[INFO ] 2018-03-29 13:13:29.998 [restartedMain] Project2AlphaApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-03-29 13:13:42.360 [restartedMain] Project2AlphaApplication - Started Project2AlphaApplication in 12.435 seconds (JVM running for 1051.729)
+[INFO ] 2018-03-29 13:23:02.935 [restartedMain] Project2AlphaApplication - Started App
+[INFO ] 2018-03-29 13:23:03.014 [restartedMain] Project2AlphaApplication - Starting Project2AlphaApplication on idea-PC with PID 2184 (C:\Users\Joshua\SpringDataBoot\Project2Alpha\target\classes started by Joshua in C:\Users\Joshua\SpringDataBoot\Project2Alpha)
+[DEBUG] 2018-03-29 13:23:03.014 [restartedMain] Project2AlphaApplication - Running with Spring Boot v2.0.0.RELEASE, Spring v5.0.4.RELEASE
+[INFO ] 2018-03-29 13:23:03.014 [restartedMain] Project2AlphaApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-03-29 13:23:14.828 [restartedMain] Project2AlphaApplication - Started Project2AlphaApplication in 11.886 seconds (JVM running for 1624.196)
+[INFO ] 2018-03-29 13:23:46.022 [http-nio-8080-exec-4] FrontController - Getting Feed:
+	 
+[INFO ] 2018-03-29 13:23:46.022 [http-nio-8080-exec-4] PostService - Getting last 20 posts:
+	
+[INFO ] 2018-03-29 13:23:59.405 [http-nio-8080-exec-2] FrontController - Adding picture to Post:
+	 org.springframework.web.multipart.support.StandardMultipartHttpServletRequest$StandardMultipartFile@c7f62a
+[INFO ] 2018-03-29 13:23:59.405 [http-nio-8080-exec-2] FrontController - There be a photo in this post
+[INFO ] 2018-03-29 13:23:59.874 [http-nio-8080-exec-5] FrontController - Saving Post:
+	 Post [id=0, likes=null, content=Hello picture, youtubeUrl=null, imageUrl=null, author=null, dateCreated=null]
+[ERROR] 2018-03-29 13:23:59.875 [http-nio-8080-exec-5] PostService - Unable to save post to DB:
+	Post [id=0, likes=null, content=Hello picture, youtubeUrl=null, imageUrl=null, author=null, dateCreated=null]
+[INFO ] 2018-03-29 13:24:01.942 [http-nio-8080-exec-6] FrontController - Getting Feed:
+	 
+[INFO ] 2018-03-29 13:24:01.942 [http-nio-8080-exec-6] PostService - Getting last 20 posts:
+	
+[INFO ] 2018-03-29 13:24:27.974 [http-nio-8080-exec-7] FrontController - Getting Feed:
+	 
+[INFO ] 2018-03-29 13:24:27.975 [http-nio-8080-exec-7] PostService - Getting last 20 posts:
+	
+[INFO ] 2018-03-29 13:25:03.457 [http-nio-8080-exec-9] FrontController - Updating User:
+	 User [id=null, email=null, firstName=John, lastName=Longtail, genderId=male, phoneNumber=1111111, dob=null, profileUrl=null]
+[INFO ] 2018-03-29 13:25:03.548 [http-nio-8080-exec-9] UserService - Updating User
+	User [id=null, email=null, firstName=John, lastName=Longtail, genderId=male, phoneNumber=1111111, dob=null, profileUrl=null]
+in DB with:
+	User [id=86, email=j@gam.com, firstName=null, lastName=null, genderId=null, phoneNumber=null, dob=null, profileUrl=null]
+[INFO ] 2018-03-29 13:25:06.044 [http-nio-8080-exec-10] FrontController - Updating User:
+	 User [id=null, email=null, firstName=John, lastName=Longtail, genderId=male, phoneNumber=1111111, dob=null, profileUrl=null]
+[INFO ] 2018-03-29 13:25:06.133 [http-nio-8080-exec-10] UserService - Updating User
+	User [id=null, email=null, firstName=John, lastName=Longtail, genderId=male, phoneNumber=1111111, dob=null, profileUrl=null]
+in DB with:
+	User [id=86, email=j@gam.com, firstName=null, lastName=null, genderId=null, phoneNumber=null, dob=null, profileUrl=null]
+[INFO ] 2018-03-29 13:25:09.702 [http-nio-8080-exec-1] FrontController - Updating User:
+	 User [id=null, email=null, firstName=John, lastName=Longtail, genderId=male, phoneNumber=1111111, dob=null, profileUrl=null]
+[INFO ] 2018-03-29 13:25:09.844 [http-nio-8080-exec-1] UserService - Updating User
+	User [id=null, email=null, firstName=John, lastName=Longtail, genderId=male, phoneNumber=1111111, dob=null, profileUrl=null]
+in DB with:
+	User [id=86, email=j@gam.com, firstName=null, lastName=null, genderId=null, phoneNumber=null, dob=null, profileUrl=null]
+[INFO ] 2018-03-29 13:25:10.641 [http-nio-8080-exec-4] FrontController - Updating User:
+	 User [id=null, email=null, firstName=John, lastName=Longtail, genderId=male, phoneNumber=1111111, dob=null, profileUrl=null]
+[INFO ] 2018-03-29 13:25:10.730 [http-nio-8080-exec-4] UserService - Updating User
+	User [id=null, email=null, firstName=John, lastName=Longtail, genderId=male, phoneNumber=1111111, dob=null, profileUrl=null]
+in DB with:
+	User [id=86, email=j@gam.com, firstName=null, lastName=null, genderId=null, phoneNumber=null, dob=null, profileUrl=null]
+[INFO ] 2018-03-29 13:25:10.970 [http-nio-8080-exec-2] FrontController - Updating User:
+	 User [id=null, email=null, firstName=John, lastName=Longtail, genderId=male, phoneNumber=1111111, dob=null, profileUrl=null]
+[INFO ] 2018-03-29 13:25:11.015 [http-nio-8080-exec-2] UserService - Updating User
+	User [id=null, email=null, firstName=John, lastName=Longtail, genderId=male, phoneNumber=1111111, dob=null, profileUrl=null]
+in DB with:
+	User [id=86, email=j@gam.com, firstName=null, lastName=null, genderId=null, phoneNumber=null, dob=null, profileUrl=null]
+[INFO ] 2018-03-29 13:25:49.083 [http-nio-8080-exec-3] FrontController - Updating User:
+	 User [id=null, email=null, firstName=Jeffrey, lastName=Longtail, genderId=male, phoneNumber=1111111, dob=null, profileUrl=null]
+[INFO ] 2018-03-29 13:25:49.176 [http-nio-8080-exec-3] UserService - Updating User
+	User [id=null, email=null, firstName=Jeffrey, lastName=Longtail, genderId=male, phoneNumber=1111111, dob=null, profileUrl=null]
+in DB with:
+	User [id=86, email=j@gam.com, firstName=null, lastName=null, genderId=null, phoneNumber=null, dob=null, profileUrl=null]
+[INFO ] 2018-03-29 13:26:15.327 [http-nio-8080-exec-6] FrontController - Logging in User:
+	 User [id=null, email=j@gam.com, firstName=null, lastName=null, genderId=null, phoneNumber=null, dob=null, profileUrl=null]
+[INFO ] 2018-03-29 13:26:15.327 [http-nio-8080-exec-6] UserService - Found User in DB:
+	j@gam.com 123
+[INFO ] 2018-03-29 13:26:15.551 [http-nio-8080-exec-6] UserService - Password matches email
+[INFO ] 2018-03-29 13:26:15.592 [http-nio-8080-exec-7] FrontController - Getting Feed:
+	 
+[INFO ] 2018-03-29 13:26:15.592 [http-nio-8080-exec-7] PostService - Getting last 20 posts:
+	
+[INFO ] 2018-03-29 13:26:51.042 [http-nio-8080-exec-8] FrontController - Updating User:
+	 User [id=null, email=null, firstName=Fred, lastName=Scape, genderId=male, phoneNumber=1231231234, dob=null, profileUrl=null]
+[INFO ] 2018-03-29 13:26:51.132 [http-nio-8080-exec-8] UserService - Updating User
+	User [id=null, email=null, firstName=Fred, lastName=Scape, genderId=male, phoneNumber=1231231234, dob=null, profileUrl=null]
+in DB with:
+	User [id=86, email=j@gam.com, firstName=null, lastName=null, genderId=null, phoneNumber=null, dob=null, profileUrl=null]
+[INFO ] 2018-03-29 13:27:16.304 [http-nio-8080-exec-10] FrontController - Updating Profile Pic:
+	 multipartFile
+[INFO ] 2018-03-29 13:27:16.837 [http-nio-8080-exec-10] UserService - Updating user picture in DB:+
+	86 1522344436306-12376644_10153769745594807_1722125583250080088_n.png
+[INFO ] 2018-03-29 13:27:17.024 [http-nio-8080-exec-10] FrontController - 1522344436306-12376644_10153769745594807_1722125583250080088_n.png
+[INFO ] 2018-03-29 13:27:17.024 [http-nio-8080-exec-10] UserService - Found User in DB:
+	86
+[INFO ] 2018-03-29 13:27:34.541 [http-nio-8080-exec-1] FrontController - Getting Feed:
+	 
+[INFO ] 2018-03-29 13:27:34.541 [http-nio-8080-exec-1] PostService - Getting last 20 posts:
+	
+[INFO ] 2018-03-29 13:27:57.384 [http-nio-8080-exec-4] FrontController - Adding picture to Post:
+	 org.springframework.web.multipart.support.StandardMultipartHttpServletRequest$StandardMultipartFile@d25283
+[INFO ] 2018-03-29 13:27:57.384 [http-nio-8080-exec-4] FrontController - There be a photo in this post
+[INFO ] 2018-03-29 13:27:57.821 [http-nio-8080-exec-2] FrontController - Saving Post:
+	 Post [id=0, likes=null, content=Making a post with a pic, youtubeUrl=null, imageUrl=null, author=null, dateCreated=null]
+[ERROR] 2018-03-29 13:27:57.822 [http-nio-8080-exec-2] PostService - Unable to save post to DB:
+	Post [id=0, likes=null, content=Making a post with a pic, youtubeUrl=null, imageUrl=null, author=null, dateCreated=null]
+[INFO ] 2018-03-29 13:27:59.209 [http-nio-8080-exec-3] FrontController - Getting Feed:
+	 
+[INFO ] 2018-03-29 13:27:59.210 [http-nio-8080-exec-3] PostService - Getting last 20 posts:
+	
+[INFO ] 2018-03-29 13:31:01.695 [http-nio-8080-exec-6] FrontController - Adding picture to Post:
+	 null
+[INFO ] 2018-03-29 13:31:01.711 [http-nio-8080-exec-7] FrontController - Saving Post:
+	 Post [id=0, likes=null, content=Hello friendscape, youtubeUrl=null, imageUrl=null, author=null, dateCreated=null]
+[ERROR] 2018-03-29 13:31:01.712 [http-nio-8080-exec-7] PostService - Unable to save post to DB:
+	Post [id=0, likes=null, content=Hello friendscape, youtubeUrl=null, imageUrl=null, author=null, dateCreated=null]
+[INFO ] 2018-03-29 13:31:03.651 [http-nio-8080-exec-8] FrontController - Getting Feed:
+	 
+[INFO ] 2018-03-29 13:31:03.651 [http-nio-8080-exec-8] PostService - Getting last 20 posts:
+	
+[INFO ] 2018-03-29 13:31:19.675 [http-nio-8080-exec-9] FrontController - Getting Feed:
+	 
+[INFO ] 2018-03-29 13:31:19.675 [http-nio-8080-exec-9] PostService - Getting last 20 posts:
+	
+[INFO ] 2018-03-29 13:31:30.761 [http-nio-8080-exec-10] FrontController - Adding picture to Post:
+	 null
+[INFO ] 2018-03-29 13:31:30.783 [http-nio-8080-exec-1] FrontController - Saving Post:
+	 Post [id=0, likes=null, content=friendscape rules!, youtubeUrl=null, imageUrl=null, author=null, dateCreated=null]
+[ERROR] 2018-03-29 13:31:30.784 [http-nio-8080-exec-1] PostService - Unable to save post to DB:
+	Post [id=0, likes=null, content=friendscape rules!, youtubeUrl=null, imageUrl=null, author=null, dateCreated=null]
+[INFO ] 2018-03-29 13:34:01.086 [http-nio-8080-exec-3] FrontController - Getting Feed:
+	 
+[INFO ] 2018-03-29 13:34:01.087 [http-nio-8080-exec-3] PostService - Getting last 20 posts:
+	
+[INFO ] 2018-03-29 13:34:32.940 [http-nio-8080-exec-5] FrontController - Adding picture to Post:
+	 org.springframework.web.multipart.support.StandardMultipartHttpServletRequest$StandardMultipartFile@97f8a5
+[INFO ] 2018-03-29 13:34:32.940 [http-nio-8080-exec-5] FrontController - There be a photo in this post
+[INFO ] 2018-03-29 13:36:46.007 [restartedMain] Project2AlphaApplication - Started App
+[INFO ] 2018-03-29 13:36:46.121 [restartedMain] Project2AlphaApplication - Starting Project2AlphaApplication on idea-PC with PID 2184 (C:\Users\Joshua\SpringDataBoot\Project2Alpha\target\classes started by Joshua in C:\Users\Joshua\SpringDataBoot\Project2Alpha)
+[DEBUG] 2018-03-29 13:36:46.122 [restartedMain] Project2AlphaApplication - Running with Spring Boot v2.0.0.RELEASE, Spring v5.0.4.RELEASE
+[INFO ] 2018-03-29 13:36:46.122 [restartedMain] Project2AlphaApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-03-29 13:36:57.908 [restartedMain] Project2AlphaApplication - Started Project2AlphaApplication in 11.893 seconds (JVM running for 2447.277)
+[INFO ] 2018-03-29 13:36:59.377 [http-nio-8080-exec-2] FrontController - Getting Feed:
+	 
+[INFO ] 2018-03-29 13:36:59.377 [http-nio-8080-exec-2] PostService - Getting last 20 posts:
+	
+[INFO ] 2018-03-29 13:37:38.721 [http-nio-8080-exec-3] FrontController - Getting Feed:
+	 
+[INFO ] 2018-03-29 13:37:38.721 [http-nio-8080-exec-3] PostService - Getting last 20 posts:
+	
+[INFO ] 2018-03-29 13:37:49.710 [http-nio-8080-exec-4] FrontController - Adding picture to Post:
+	 org.springframework.web.multipart.support.StandardMultipartHttpServletRequest$StandardMultipartFile@158f93d
+[INFO ] 2018-03-29 13:37:49.710 [http-nio-8080-exec-4] FrontController - There be a photo in this post
+[INFO ] 2018-03-29 13:39:42.402 [http-nio-8080-exec-6] FrontController - Getting Feed:
+	 
+[INFO ] 2018-03-29 13:39:42.403 [http-nio-8080-exec-6] PostService - Getting last 20 posts:
+	
+[INFO ] 2018-03-29 13:39:53.596 [http-nio-8080-exec-8] FrontController - Adding picture to Post:
+	 org.springframework.web.multipart.support.StandardMultipartHttpServletRequest$StandardMultipartFile@1f6218
+[INFO ] 2018-03-29 13:39:53.596 [http-nio-8080-exec-8] FrontController - There be a photo in this post
+[INFO ] 2018-03-29 13:39:53.982 [http-nio-8080-exec-7] FrontController - Saving Post:
+	 Post [id=0, likes=null, content=Good afternoon, Friend-Scape!, youtubeUrl=null, imageUrl=1522345193600-13226938_1070008206407626_5306170032486965660_n.jpg, author=null, dateCreated=null]
+[ERROR] 2018-03-29 13:39:53.982 [http-nio-8080-exec-7] PostService - Unable to save post to DB:
+	Post [id=0, likes=null, content=Good afternoon, Friend-Scape!, youtubeUrl=null, imageUrl=1522345193600-13226938_1070008206407626_5306170032486965660_n.jpg, author=null, dateCreated=null]
+[INFO ] 2018-03-29 13:40:00.233 [http-nio-8080-exec-9] FrontController - Getting Feed:
+	 
+[INFO ] 2018-03-29 13:40:00.234 [http-nio-8080-exec-9] PostService - Getting last 20 posts:
+	
+[INFO ] 2018-03-29 13:47:09.952 [http-nio-8080-exec-2] FrontController - Getting Feed:
+	 
+[INFO ] 2018-03-29 13:47:09.952 [http-nio-8080-exec-2] PostService - Getting last 20 posts:
+	
+[INFO ] 2018-03-29 13:47:29.317 [http-nio-8080-exec-3] FrontController - Adding picture to Post:
+	 org.springframework.web.multipart.support.StandardMultipartHttpServletRequest$StandardMultipartFile@1273f40
+[INFO ] 2018-03-29 13:47:29.317 [http-nio-8080-exec-3] FrontController - There be a photo in this post
+[INFO ] 2018-03-29 13:47:30.287 [http-nio-8080-exec-5] FrontController - Saving Post:
+	 Post [id=0, likes=null, content=FriendScape Rules!, youtubeUrl=null, imageUrl=1522345649319-14054099_10154657745909767_35968704672069578_n.png, author=User [id=86, email=null, firstName=null, lastName=null, genderId=null, phoneNumber=null, dob=null, profileUrl=null], dateCreated=null]
+[INFO ] 2018-03-29 13:47:30.287 [http-nio-8080-exec-5] PostService - Saving Post to DB:
+	Post [id=0, likes=null, content=FriendScape Rules!, youtubeUrl=null, imageUrl=1522345649319-14054099_10154657745909767_35968704672069578_n.png, author=User [id=86, email=null, firstName=null, lastName=null, genderId=null, phoneNumber=null, dob=null, profileUrl=null], dateCreated=null]
+[INFO ] 2018-03-29 13:47:47.905 [http-nio-8080-exec-6] FrontController - Getting Feed:
+	 
+[INFO ] 2018-03-29 13:47:47.905 [http-nio-8080-exec-6] PostService - Getting last 20 posts:
+	
+[INFO ] 2018-03-29 13:48:46.908 [http-nio-8080-exec-8] FrontController - Getting Feed:
+	 
+[INFO ] 2018-03-29 13:48:46.908 [http-nio-8080-exec-8] PostService - Getting last 20 posts:
+	
+[INFO ] 2018-03-29 13:50:47.088 [http-nio-8080-exec-9] FrontController - Getting Feed:
+	 
+[INFO ] 2018-03-29 13:50:47.088 [http-nio-8080-exec-9] PostService - Getting last 20 posts:
+	
+[INFO ] 2018-03-29 13:52:03.601 [http-nio-8080-exec-1] FrontController - Getting Feed:
+	 
+[INFO ] 2018-03-29 13:52:03.602 [http-nio-8080-exec-1] PostService - Getting last 20 posts:
+	
+[INFO ] 2018-03-29 13:53:34.867 [http-nio-8080-exec-3] FrontController - Getting Feed:
+	 
+[INFO ] 2018-03-29 13:53:34.868 [http-nio-8080-exec-3] PostService - Getting last 20 posts:
+	
+[INFO ] 2018-03-29 13:53:48.877 [http-nio-8080-exec-4] FrontController - Getting Feed:
+	 
+[INFO ] 2018-03-29 13:53:48.877 [http-nio-8080-exec-4] PostService - Getting last 20 posts:
+	
+[INFO ] 2018-03-29 13:54:16.432 [http-nio-8080-exec-5] FrontController - Getting Feed:
+	 
+[INFO ] 2018-03-29 13:54:16.433 [http-nio-8080-exec-5] PostService - Getting last 20 posts:
+	
+[INFO ] 2018-03-29 13:54:25.156 [http-nio-8080-exec-6] FrontController - Getting Feed:
+	 
+[INFO ] 2018-03-29 13:54:25.157 [http-nio-8080-exec-6] PostService - Getting last 20 posts:
+	
+[INFO ] 2018-03-29 13:55:02.361 [http-nio-8080-exec-8] FrontController - Getting Feed:
+	 
+[INFO ] 2018-03-29 13:55:02.361 [http-nio-8080-exec-8] PostService - Getting last 20 posts:
+	
+[INFO ] 2018-03-29 13:55:35.794 [http-nio-8080-exec-9] FrontController - Like Post:
+	 87
+[INFO ] 2018-03-29 13:55:35.796 [http-nio-8080-exec-9] UserService - Found User in DB:
+	86
+[INFO ] 2018-03-29 13:55:36.104 [http-nio-8080-exec-9] PostService - Likeing Post to DB:+
+	87 from user
+	86
+[INFO ] 2018-03-29 14:00:21.957 [http-nio-8080-exec-2] FrontController - Getting Feed:
+	 
+[INFO ] 2018-03-29 14:00:21.957 [http-nio-8080-exec-2] PostService - Getting last 20 posts:
+	
+[INFO ] 2018-03-29 14:00:35.920 [http-nio-8080-exec-3] FrontController - Getting Feed:
+	 
+[INFO ] 2018-03-29 14:00:35.920 [http-nio-8080-exec-3] PostService - Getting last 20 posts:
+	

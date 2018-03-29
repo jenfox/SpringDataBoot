@@ -152,14 +152,32 @@ public class FrontController {
 
 	// content, imageUrl, youtubeUrl
 	@RequestMapping(method = RequestMethod.POST, value = "/posts")
-	public ResponseEntity<Boolean> savePost(@RequestBody Post post) {
-		logger.info("Saving Post:\n\t " + post);
+	public ResponseEntity<Boolean> savePost(@RequestBody Post poster) {
+		logger.info("Saving Post:\n\t " + poster);
+		System.out.println("Making a post");
 
 		// TODO validate
-
-		postService.addPost(post);
+		
+		postService.addPost(poster);
 
 		return ResponseEntity.ok(true);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/posts/pictures")
+	public ResponseEntity<Post> picturePost(@RequestBody MultipartFile multipartFile) {
+		logger.info("Adding picture to Post:\n\t "  + multipartFile);
+		
+		String url = "";
+		// TODO validate
+		if(multipartFile != null) {
+			logger.info("There be a photo in this post");
+			System.out.println("made it to post a photo");
+			url = ac.uploadFile(multipartFile);
+		}
+			Post p = new Post();
+			p.setImageUrl(url);
+		System.out.println(url);
+		return ResponseEntity.ok(p);
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/posts")
@@ -200,6 +218,7 @@ public class FrontController {
 	// }
 
 	// int
+	@CrossOrigin(origins = "http://localhost:4200")
 	@RequestMapping(method = RequestMethod.POST, value = "/likes/{postId}")
 	public ResponseEntity<Post> likePost(@PathVariable Integer postId, @RequestBody Resident userSkeleton) {
 		logger.info("Like Post:\n\t " + postId);

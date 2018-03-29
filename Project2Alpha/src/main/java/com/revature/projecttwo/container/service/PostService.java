@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.projecttwo.container.beans.Post;
+import com.revature.projecttwo.container.beans.Resident;
 import com.revature.projecttwo.container.repo.PostRepo;
 import com.revature.projecttwo.container.validation.PostValidService;
 
@@ -142,7 +143,7 @@ public class PostService {
 		// 1. check if userId exists
 		if (userService.getUser(userId) == null) {
 			logger.error("User ID liking post DNE:\n\t");
-			return false;
+			return null;
 		}
 
 		// 2. Find if post exists
@@ -150,7 +151,7 @@ public class PostService {
 
 		if (post == null) {
 			logger.error("No valid post to like\n\t" + postId);
-			return false;
+			return null;
 		}
 		if (post.getLikes() == null)
 			post.setLikes(new Integer[] {});
@@ -172,5 +173,5 @@ public class PostService {
 		logger.info("Deleting Post to DB:+\n\t" + id);
 		postRepo.deleteById(id);
 	}
-
+	
 }
