@@ -142,7 +142,7 @@ public class PostService {
 		// 1. check if userId exists
 		if (userService.getUser(userId) == null) {
 			logger.error("User ID liking post DNE:\n\t");
-			return false;
+			return null;
 		}
 
 		// 2. Find if post exists
@@ -150,7 +150,7 @@ public class PostService {
 
 		if (post == null) {
 			logger.error("No valid post to like\n\t" + postId);
-			return false;
+			return null;
 		}
 		if (post.getLikes() == null)
 			post.setLikes(new Integer[] {});
