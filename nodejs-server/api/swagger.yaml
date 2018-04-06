@@ -1,0 +1,12 @@
+---
+swagger: "2.0"
+info:
+  description: "this is another test!"
+  version: "2"
+  title: "Test2"
+host: "virtserver.swaggerhub.com"
+basePath: "/jenfox/Test2/2"
+schemes:
+- "https"
+paths: {}
+definitions: {}
